@@ -60,7 +60,7 @@
                 <span class="author-block">
                   <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Rhodri Guerrier</a><sup>1</sup>,</span>
                   <span class="author-block">
-                    <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Adam W. Harley</a><sup>1</sup>,</span>
+                    <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Adam W. Harley</a><sup>2</sup>,</span>
                     <span class="author-block">
                       <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Dima Damen</a><sup>1</sup>,</span>
                   </span>
@@ -149,8 +149,11 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
-          </p>
+            We introduce EgoPoints, a benchmark for point tracking in egocentric videos. We annotate 4.7K challenging tracks in egocentric sequences, including 9x more points that go out-of-view and 59x more points that require re-identification (ReID) after returning to view, compared to the popular TAP-Vid-DAVIS evaluation benchmark. To measure the performance of models on such challenging points, we introduce evaluation metrics that particularly monitor tracking on points in-view, out-of-view, and those that require re-identification.
+        </p>
+        <p>
+            We then propose a pipeline to create semi-real sequences, with automatic ground truth. We generate 11K sequences by combining dynamic Kubric objects with scene points from EPIC Fields. When fine-tuning state-of-the-art methods on these sequences and evaluating on our annotated EgoPoints sequences, we improve CoTracker across all metrics including the tracking accuracy δ<sup>★</sup><sub>avg</sub> by 2.6 percentage points and accuracy on ReID sequences (ReIDδ<sub>avg</sub>) by 2.4 points. We also improve δ<sup>★</sup><sub>avg</sub> and ReIDδ<sub>avg</sub> of PIPs++ by 0.3 and 2.2 respectively.
+        </p>
         </div>
       </div>
     </div>
