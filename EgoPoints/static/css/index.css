@@ -133,5 +133,13 @@ body {
   font-size: smaller;
 }
 
-
-
+.link-container {
+  display: block;
+  margin-bottom: 8px; /* Adjust this value to control spacing */
+}
+.link-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
