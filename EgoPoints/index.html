@@ -150,6 +150,7 @@
 
 
 
+
 <!-- Video carousel -->
 <section class="hero is-small is-light">
   <div class="hero-body">
@@ -372,13 +373,101 @@
 
 
 
+<!-- Performance Table Section -->
+<section class="section is-small">
+  <div class="container is-four-fifths">
+    <h2 class="title is-3">Performance Comparison</h2>
+    <h5 class="subtitle has-text-centered" style="
+    width: 100%;
+    margin: auto;
+    text-align: left !important"> 
+          Performance of point tracking baselines on the commonly used benchmark TAP-Vid-DAVIS compared to our 
+          EgoPoints evaluation benchmark on the main metric δ<sub>avg</sub>. Additionally, metrics showcasing ReID, 
+          out-of-view (OOVA) and in-view (IVA) accuracy are included to highlight model failures. We use the 
+          query-first mode in all evaluations.
+  </h5>
+    <div class="content">
+      <table class="table is-striped is-hoverable is-fullwidth">
+
+        <thead>
+          <tr>
+            <th></th>
+            <th>TAP-Vid-DAVIS</th>
+            <th colspan="4" style="padding-left:20%;">EgoPoints</th>
+          </tr>
+          <tr>
+            <th>Model</th>
+            <th>δ<sub>avg</sub>↑</th>
+            <th>δ<sub>avg</sub>↑</th>
+            <th>ReID δ<sub>avg</sub>↑</th>
+            <th>OOVA↑</th>
+            <th>IVA↑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PIPs++</td>
+            <td>64.0</td>
+            <td>36.9</td>
+            <td>14.6</td>
+            <td>50.4</td>
+            <td>89.2</td>
+          </tr>
+          <tr>
+            <td>CoTracker</td>
+            <td>74.7</td>
+            <td>38.5</td>
+            <td>4.8</td>
+            <td><strong>81.4</strong></td>
+            <td>73.4</td>
+          </tr>
+          <tr>
+            <td>BootsTAPIR Online</td>
+            <td>65.2</td>
+            <td>39.6</td>
+            <td>0.0</td>
+            <td>0.0</td>
+            <td><strong>100.0</strong></td>
+          </tr>
+          <tr>
+            <td>LocoTrack (cho2024local)</td>
+            <td>75.3</td>
+            <td><strong>59.4</strong></td>
+            <td>0.1</td>
+            <td>0.2</td>
+            <td>99.9</td>
+          </tr>
+          <tr>
+            <td>CoTracker v3</td>
+            <td><strong>77.2</strong></td>
+            <td>50.0</td>
+            <td><strong>15.0</strong></td>
+            <td>31.8</td>
+            <td>99.3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- End Performance Table Section -->
+
+
 <!-- Image carousel -->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
           <!-- Your image here -->
           <h2 class="title is-3">EgoPoints dataset </h2>
+          <h2 class="subtitle has-text-centered" style="
+          width: 100%;
+          margin: auto;
+          text-align: left !important"> 
+          Example of sparsely annotated sequences from EgoPoints benchmark. The dashed lines represent dynamic object tracks, while solid lines show scene point tracks.
+
+        </h2>
           <img src="static/images/figure_example_annotations_dashed.png" alt="MY ALT TEXT" style="display: block; margin: auto;" width="90%">
+
     </div>
   </div>        
 </section>
@@ -521,7 +610,14 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>@misc{darkhalil2024egopointsadvancingpointtracking,
+        title={EgoPoints: Advancing Point Tracking for Egocentric Videos}, 
+        author={Ahmad Darkhalil and Rhodri Guerrier and Adam W. Harley and Dima Damen},
+        journal= {WACV},
+        year={2025},
+        eprint={2412.04592},
+        url={https://arxiv.org/abs/2412.04592}, 
+  }</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
