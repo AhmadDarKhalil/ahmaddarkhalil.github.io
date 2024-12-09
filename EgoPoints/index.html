@@ -65,7 +65,6 @@
                     <a href="https://adamharley.com/" target="_blank">Adam W. Harley</a><sup>2</sup>,</span>
                     <span class="author-block">
                       <a href="https://dimadamen.github.io/" target="_blank">Dima Damen</a><sup>1</sup>,</span>
-                  </span>
                   </div>
 
                   <div class="is-size-5 publication-authors">
@@ -132,6 +131,12 @@
             We then propose a pipeline to create semi-real sequences, with automatic ground truth. We generate 11K sequences by combining dynamic Kubric objects with scene points from EPIC Fields. When fine-tuning state-of-the-art methods on these sequences and evaluating on our annotated EgoPoints sequences, we improve CoTracker across all metrics including the tracking accuracy δ<sup>★</sup><sub>avg</sub> by 2.7 percentage points and accuracy on ReID sequences (ReIDδ<sub>avg</sub>) by 2.4 points. We also improve δ<sup>★</sup><sub>avg</sub> and ReIDδ<sub>avg</sub> of PIPs++ by 0.3 and 2.2 respectively.
         </p>
         </div>
+          <div class="is-size-5 publication-authors">
+              <span class="author-block">
+              EgoPoints: <a href="./index.html#sec1" >Visualisation</a> | <a href="./index.html#sec2">Performance Evaluation</a> | <a href="/index.html#sec3">Sample Annotations</a><br/>
+              K-EPIC: <a href="./index.html#sec4">Pipeline</a> | <a href="./index.html#sec5">Sample</a><br/>
+              Fine-Tuned Co-Tracker: <a href="./index.html#sec6">Visualisations</a><br/>
+                  <a href="./index.html#sec7">Code and Download</a> |  <a href="./index.html#sec7">Acknowledgements and Citation</a></span></div>
       </div>
     </div>
   </div>
@@ -141,12 +146,12 @@
 
 
 <!-- Introduction Section -->
-<section class="section" style="margin-bottom: -2%;">
+<section class="section" style="margin-bottom: -2%;" id="sec1">
   <div class="container">
-    <h1 class="title is-3">Qualitative Performance on DAVIS vs. EgoPoints</h1>
+    <h1 class="title is-3">Introducing EgoPoints</h1>
     <p class="subtitle">
-      Below we present the qualitative performance of several state-of-the-art methods on both the DAVIS and EgoPoints datasets. 
-      These comparisons highlight the complexity and challenges introduced by our dataset, as many top-performing approaches 
+      We compare the performance of several state-of-the-art point on trackers on both DAVIS (left) and EgoPoints (right).
+      These comparisons highlight the complexity and challenges introduced by EgoPoints, as top-performing point trackers 
       struggle or degrade in the more difficult scenarios it provides.
     </p>
   </div>
@@ -361,17 +366,16 @@
 
 
 <!-- Performance Table Section -->
-<section class="section is-small">
+<section class="section is-small" id = "sec2">
   <div class="container is-four-fifths">
-    <h2 class="title is-3">Performance Comparison</h2>
+    <h2 class="title is-3">Performance Comparison on EgoPoints</h2>
     <h5 class="subtitle has-text-centered" style="
     width: 100%;
     margin: auto;
     text-align: left !important"> 
-          Performance of point tracking baselines on the commonly used benchmark TAP-Vid-DAVIS compared to our 
-          EgoPoints evaluation benchmark on the main metric δ<sub>avg</sub>. Additionally, metrics showcasing ReID, 
-          out-of-view (OOVA) and in-view (IVA) accuracy are included to highlight model failures. We use the 
-          query-first mode in all evaluations.
+          Performance of point tracking baselines on the TAP-Vid-DAVIS compared to our 
+          EgoPoints benchmark on the main metric δ<sub>avg</sub>. Additionally, metrics showcasing ReID, 
+          out-of-view (OOVA) and in-view (IVA) accuracy are proposed to highlight model failures.
   </h5>
     <div class="content">
       <table class="table is-striped is-hoverable is-fullwidth">
@@ -442,10 +446,10 @@
 
 
 <!-- Image carousel -->
-<section class="hero is-small is-light">
+<section class="hero is-small is-light" id="sec3">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">EgoPoints dataset </h2>
+      <h2 class="title is-3">EgoPoints Annotations </h2>
       <h2 class="subtitle has-text-centered" style="
       width: 100%;
       margin: auto;
@@ -476,7 +480,7 @@
 
 
 <!-- Image carousel -->
-<section class="hero is-small ">
+<section class="hero is-small " id="sec4">
   <div class="hero-body">
     <div class="container">
           <!-- Your image here -->
@@ -496,7 +500,7 @@
 <!-- End image carousel -->
 
 <!-- Video carousel -->
-<section class="hero is-small is-light">
+<section class="hero is-small is-light" id="sec5">
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3">K-EPIC samples</h2>
@@ -504,7 +508,7 @@
       width: 100%;
       margin: auto;
       text-align: left !important"> 
-      Examples from the K-EPIC dataset. A white border around each circle denotes that the corresponding point is out of view. The dataset encompasses both in-view and out-of-view trackings.
+      Examples from the K-EPIC synehtic sequences. Empty points are out-of-view points.
     </h2>
       <div id="results-carousel" class="carousel2 results-carousel">
         <div class="item item-video2">
@@ -550,7 +554,7 @@
 
 
 <!-- Video carousel -->
-<section class="hero is-small">
+<section class="hero is-small" id ="sec6">
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3">Comparison between CotrackerV2 baseline and fine-tuned model</h2>
@@ -558,7 +562,7 @@
       width: 100%;
       margin: auto;
       text-align: left !important"> 
-      In these videos, we qualitatively compare the performance of the baseline and fine-tuned Cotracker models on K-EPIC, highlighting their improvements in tracking and re-identifying points.
+      We qualitatively compare the baseline and fine-tuned Cotracker models on K-EPIC, evaluated on EgoPoints.
       <div id="results-carousel" class="carousel3 results-carousel">
         <div class="item item-video2">
           <video poster="" id="video2" autoplay controls muted loop height="100%">
@@ -589,7 +593,7 @@
           </video>
         </div>
       </div>
-    </div>
+          </div></div>
   </div>
 </section>
 <!-- End video carousel -->
@@ -597,9 +601,10 @@
 
 
 <!-- Image carousel -->
-<section class="hero is-small is-light">
+<section class="hero is-small is-light" id="sec7">
   <div class="hero-body">
-    <div class="container">
+      <div class="container">
+    <div class="is-size-5 publication-authors">
           <!-- Your image here -->
           <h2 class="title is-3">Download the data </h2>
           <a href="https://www.dropbox.com/scl/fo/tfvctluqu3cr17jr6q0td/AA6h6GlV-x6QeuupmeLejzA?rlkey=r0q12vbi6wour6qsteklivb6p&st=1e4b4dnn&dl=0" target="_blank" class="link-container">
@@ -608,7 +613,7 @@
           <a href="https://www.dropbox.com/scl/fo/tfvctluqu3cr17jr6q0td/AA6h6GlV-x6QeuupmeLejzA?rlkey=r0q12vbi6wour6qsteklivb6p&st=1e4b4dnn&dl=0" target="_blank" class="link-container">
             <img src="static/images/evaluation.png" alt="Evaluation Data" class="link-icon"> EgoPoints - Evaluation data
           </a>
-          
+          </div>
     </div>
   </div>        
 </section>
@@ -616,7 +621,7 @@
 
 
 <!-- Image carousel -->
-<section class="hero is-small">
+<section class="hero is-small" id="sec8">
   <div class="hero-body">
     <div class="container">
           <!-- Your image here -->
