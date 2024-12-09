@@ -114,29 +114,41 @@
   </div>
 </section>
 
-
-
 <!-- Paper abstract -->
-<section class="section hero is-light">
+<section class="section hero is-light" style="padding-bottom:1rem;">
   <div class="container is-max-desktop">
-
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+        <div class="content has-text-justified" style="margin-bottom:0.5rem;">
           <p>
             We introduce EgoPoints, a benchmark for point tracking in egocentric videos. We annotate 4.7K challenging tracks in egocentric sequences, including 9x more points that go out-of-view and 59x more points that require re-identification (ReID) after returning to view, compared to the popular TAP-Vid-DAVIS evaluation benchmark. To measure the performance of models on such challenging points, we introduce evaluation metrics that particularly monitor tracking on points in-view, out-of-view, and those that require re-identification.
-        </p>
-        <p>
+          </p>
+          <p>
             We then propose a pipeline to create semi-real sequences, with automatic ground truth. We generate 11K sequences by combining dynamic Kubric objects with scene points from EPIC Fields. When fine-tuning state-of-the-art methods on these sequences and evaluating on our annotated EgoPoints sequences, we improve CoTracker across all metrics including the tracking accuracy δ<sup>★</sup><sub>avg</sub> by 2.7 percentage points and accuracy on ReID sequences (ReIDδ<sub>avg</sub>) by 2.4 points. We also improve δ<sup>★</sup><sub>avg</sub> and ReIDδ<sub>avg</sub> of PIPs++ by 0.3 and 2.2 respectively.
-        </p>
+          </p>
         </div>
-          <div class="is-size-5 publication-authors">
-              <span class="author-block">
-              EgoPoints: <a href="./index.html#sec1" >Visualisation</a> | <a href="./index.html#sec2">Performance Evaluation</a> | <a href="/index.html#sec3">Sample Annotations</a><br/>
-              K-EPIC: <a href="./index.html#sec4">Pipeline</a> | <a href="./index.html#sec5">Sample</a><br/>
-              Fine-Tuned Co-Tracker: <a href="./index.html#sec6">Visualisations</a><br/>
-                  <a href="./index.html#sec7">Code and Download</a> |  <a href="./index.html#sec7">Acknowledgements and Citation</a></span></div>
+
+        <div class="content has-text-justified is-size-5 publication-authors" style="margin-bottom:0;">
+          <span class="author-block">
+            <strong>EgoPoints:</strong>
+            <a href="./index.html#sec1">Visualisation</a> | 
+            <a href="./index.html#sec2">Performance</a> | 
+            <a href="./index.html#sec3">Samples</a>&nbsp;&nbsp;•&nbsp; 
+            
+            <strong>K-EPIC:</strong> 
+            <a href="./index.html#sec4">Pipeline</a> | 
+            <a href="./index.html#sec5">Samples</a>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 
+            
+            <strong>Fine-Tuned Co-Tracker:</strong>
+            <a href="./index.html#sec6">Visualisations</a>&nbsp;&nbsp;•&nbsp;  
+            
+            <strong>Resources:</strong>
+            <a href="./index.html#sec7">Code</a> |
+            <a href="./index.html#sec7">Acknowledgements</a>
+          </span>
+        </div>
+
       </div>
     </div>
   </div>
@@ -144,6 +156,17 @@
 <!-- End paper abstract -->
 
 
+<!-- Introduction Section -->
+<section class="section" style="margin-bottom: -2%;" id="sec1">
+  <div class="container">
+    <h1 class="title is-3">Introducing EgoPoints</h1>
+    <p class="subtitle">
+      We compare the performance of several state-of-the-art point on trackers on both DAVIS (left) and EgoPoints (right).
+      These comparisons highlight the complexity and challenges introduced by EgoPoints, as top-performing point trackers 
+      struggle or degrade in the more difficult scenarios it provides.
+    </p>
+  </div>
+</section>
 
 <!-- Introduction Section -->
 <section class="section" style="margin-bottom: -2%;" id="sec1">
