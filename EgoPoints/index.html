@@ -76,7 +76,7 @@
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
                       <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        <a href="https://arxiv.org/pdf/2412.04592.pdf" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -85,16 +85,6 @@
                       </a>
                     </span>
 
-                    <!-- Supplementary PDF link -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
 
                   <!-- Github link -->
                   <span class="link-block">
@@ -109,7 +99,7 @@
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  <a href="https://arxiv.org/abs/2412.04592" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
@@ -139,7 +129,7 @@
             We introduce EgoPoints, a benchmark for point tracking in egocentric videos. We annotate 4.7K challenging tracks in egocentric sequences, including 9x more points that go out-of-view and 59x more points that require re-identification (ReID) after returning to view, compared to the popular TAP-Vid-DAVIS evaluation benchmark. To measure the performance of models on such challenging points, we introduce evaluation metrics that particularly monitor tracking on points in-view, out-of-view, and those that require re-identification.
         </p>
         <p>
-            We then propose a pipeline to create semi-real sequences, with automatic ground truth. We generate 11K sequences by combining dynamic Kubric objects with scene points from EPIC Fields. When fine-tuning state-of-the-art methods on these sequences and evaluating on our annotated EgoPoints sequences, we improve CoTracker across all metrics including the tracking accuracy δ<sup>★</sup><sub>avg</sub> by 2.6 percentage points and accuracy on ReID sequences (ReIDδ<sub>avg</sub>) by 2.4 points. We also improve δ<sup>★</sup><sub>avg</sub> and ReIDδ<sub>avg</sub> of PIPs++ by 0.3 and 2.2 respectively.
+            We then propose a pipeline to create semi-real sequences, with automatic ground truth. We generate 11K sequences by combining dynamic Kubric objects with scene points from EPIC Fields. When fine-tuning state-of-the-art methods on these sequences and evaluating on our annotated EgoPoints sequences, we improve CoTracker across all metrics including the tracking accuracy δ<sup>★</sup><sub>avg</sub> by 2.7 percentage points and accuracy on ReID sequences (ReIDδ<sub>avg</sub>) by 2.4 points. We also improve δ<sup>★</sup><sub>avg</sub> and ReIDδ<sub>avg</sub> of PIPs++ by 0.3 and 2.2 respectively.
         </p>
         </div>
       </div>
@@ -371,7 +361,59 @@
 </section>
 <!-- End video carousel -->
 
-
+<!-- Video carousel -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">LocoTrack performence on DAVIS vs EgoPoints</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/davis_vs_cotracker/locotrack/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/davis_vs_cotracker/locotrack/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video4">
+          <video poster="" id="video4" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/davis_vs_cotracker/locotrack/cows_vs_P04_04_start_44043_end_44279_compressed.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video5">
+          <video poster="" id="video5" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/davis_vs_cotracker/locotrack/dog_vs_P08_09_start_3541_end_3968_compressed.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video6">
+          <video poster="" id="video6" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/davis_vs_cotracker/locotrack/loading_vs_P10_04_start_128680_end_128946_compressed.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/davis_vs_cotracker/locotrack/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End video carousel -->
 
 <!-- Performance Table Section -->
 <section class="section is-small">
@@ -430,7 +472,7 @@
             <td><strong>100.0</strong></td>
           </tr>
           <tr>
-            <td>LocoTrack (cho2024local)</td>
+            <td>LocoTrack</td>
             <td>75.3</td>
             <td><strong>59.4</strong></td>
             <td>0.1</td>
@@ -481,12 +523,15 @@
     <div class="container">
           <!-- Your image here -->
           <h2 class="title is-3">K-EPIC pipeline </h2>
-          <img src="static/images/kepic_pipeline_v2.png" alt="MY ALT TEXT" style="display: block; margin: auto;" width="90%">
           <h2 class="subtitle has-text-centered" style="
-          width: 90%;
+          width: 100%;
           margin: auto;
           text-align: left !important"> 
+          The pipeline for K-EPIC. This includes projecting 3D points as tracks and filtering them using CoTracker to get scene points (left). Additionally, we sample 3D objects and tracks from TAP-Vid-KUBRIC (top right). 
+
         </h2>
+          <img src="static/images/kepic_pipeline_v2-min.png" alt="MY ALT TEXT" style="display: block; margin: 2% auto auto auto ;" width="90%">
+
     </div>
   </div>        
 </section>
@@ -497,37 +542,43 @@
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3">K-EPIC samples</h2>
-      <div id="results-carousel" class="carousel results-carousel">
+      <h2 class="subtitle has-text-centered" style="
+      width: 100%;
+      margin: auto;
+      text-align: left !important"> 
+      Examples from the K-EPIC dataset. A white border around each circle denotes that the corresponding point is out of view. The dataset encompasses both in-view and out-of-view trackings.
+    </h2>
+      <div id="results-carousel" class="carousel2 results-carousel">
         <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="80%">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
             <!-- Your video file here -->
             <source src="static/videos/kepic/0124_P01_105_24717_24749_projected_3d_converted.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="80%">\
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
             <source src="static/videos/kepic/1129_P06_111_31661_31693_projected_3d_converted.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video4">
-          <video poster="" id="video4" autoplay controls muted loop height="80%">\
+          <video poster="" id="video4" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
             <source src="static/videos/kepic/5629_P35_102_31178_31210_projected_3d_converted.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video5">
-          <video poster="" id="video5" autoplay controls muted loop height="80%">\
+          <video poster="" id="video5" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
             <source src="static/videos/kepic/5630_P35_102_31211_31243_projected_3d_converted.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video6">
-          <video poster="" id="video6" autoplay controls muted loop height="80%">\
+          <video poster="" id="video6" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
             <source src="static/videos/kepic/9846_P22_112_2195_2227_projected_3d_converted.mp4"
             type="video/mp4">
@@ -610,13 +661,11 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@misc{darkhalil2024egopointsadvancingpointtracking,
+      <pre><code>@inproceedings{darkhalil2025egopoints,
         title={EgoPoints: Advancing Point Tracking for Egocentric Videos}, 
         author={Ahmad Darkhalil and Rhodri Guerrier and Adam W. Harley and Dima Damen},
-        journal= {WACV},
-        year={2025},
-        eprint={2412.04592},
-        url={https://arxiv.org/abs/2412.04592}, 
+        booktitle= {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+        year={2025}
   }</code></pre>
     </div>
 </section>
