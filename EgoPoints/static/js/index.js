@@ -13,6 +13,7 @@ $(document).ready(function () {
 
     // Initialize all carousels
     var carousels = bulmaCarousel.attach('.carousel', options);
+	
 
     // Attach slider
     bulmaSlider.attach();
