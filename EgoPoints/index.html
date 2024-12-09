@@ -140,280 +140,225 @@
 
 
 
+<!-- Introduction Section -->
+<section class="section" style="margin-bottom: -2%;">
+  <div class="container">
+    <h1 class="title is-3">Qualitative Performance on DAVIS vs. EgoPoints</h1>
+    <p class="subtitle">
+      Below we present the qualitative performance of several state-of-the-art methods on both the DAVIS and EgoPoints datasets. 
+      These comparisons highlight the complexity and challenges introduced by our dataset, as many top-performing approaches 
+      struggle or degrade in the more difficult scenarios it provides.
+    </p>
+  </div>
+</section>
 
-<!-- Video carousel -->
-<section class="hero is-small is-light">
+
+<!-- PIPs++ Subsection -->
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">PIPs++ performence on DAVIS vs EgoPoints</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/pips2/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4"
-            type="video/mp4">
+      <h2 class="title is-4 " style="margin-bottom: 0px;">PIPs++ Performance on DAVIS vs. EgoPoints</h2>
+      <div id="pips-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="pips-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/pips2/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="pips-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video4">
-          <video poster="" id="video4" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/pips2/cows_vs_P04_04_start_44043_end_44279_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="pips-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video5">
-          <video poster="" id="video5" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/pips2/dog_vs_P08_09_start_3541_end_3968_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="pips-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video6">
-          <video poster="" id="video6" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/pips2/loading_vs_P10_04_start_128680_end_128946_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="pips-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/pips2/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="pips-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
           </video>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
 
-
-
-<!-- Video carousel -->
-<section class="hero is-small is-light">
+<!-- CotrackerV2 Subsection -->
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">CotrackerV2 performence on DAVIS vs EgoPoints</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker2/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4"
-            type="video/mp4">
+      <h2 class="title is-4" style="margin-bottom: 0px;">CotrackerV2 Performance on DAVIS vs. EgoPoints</h2>
+      <div id="cotracker2-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="cotracker2-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker2/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker2-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video4">
-          <video poster="" id="video4" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker2/cows_vs_P04_04_start_44043_end_44279_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker2-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video5">
-          <video poster="" id="video5" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker2/dog_vs_P08_09_start_3541_end_3968_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker2-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video6">
-          <video poster="" id="video6" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker2/loading_vs_P10_04_start_128680_end_128946_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker2-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker2/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker2-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
           </video>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
 
-
-
-<!-- Video carousel -->
-<section class="hero is-small is-light">
+<!-- CotrackerV3 Subsection -->
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">CotrackerV3 performence on DAVIS vs EgoPoints</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker3/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4"
-            type="video/mp4">
+      <h2 class="title is-4" style="margin-bottom: 0px;">CotrackerV3 Performance on DAVIS vs. EgoPoints</h2>
+      <div id="cotracker3-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="cotracker3-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker3/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker3-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video4">
-          <video poster="" id="video4" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker3/cows_vs_P04_04_start_44043_end_44279_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker3-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video5">
-          <video poster="" id="video5" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker3/dog_vs_P08_09_start_3541_end_3968_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker3-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video6">
-          <video poster="" id="video6" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker3/loading_vs_P10_04_start_128680_end_128946_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker3-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/cotracker3/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="cotracker3-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
           </video>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
 
-<!-- Video carousel -->
-<section class="hero is-small is-light">
+<!-- TAPIR Subsection -->
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">TAPIR performence on DAVIS vs EgoPoints</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/tapir/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4"
-            type="video/mp4">
+      <h2 class="title is-4" style="margin-bottom: 0px;">TAPIR Performance on DAVIS vs. EgoPoints</h2>
+      <div id="tapir-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="tapir-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/tapir/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="tapir-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video4">
-          <video poster="" id="video4" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/tapir/cows_vs_P04_04_start_44043_end_44279_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="tapir-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video5">
-          <video poster="" id="video5" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/tapir/dog_vs_P08_09_start_3541_end_3968_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="tapir-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video6">
-          <video poster="" id="video6" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/tapir/loading_vs_P10_04_start_128680_end_128946_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="tapir-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/tapir/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="tapir-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
           </video>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
 
-<!-- Video carousel -->
-<section class="hero is-small is-light">
+<!-- LocoTrack Subsection -->
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">LocoTrack performence on DAVIS vs EgoPoints</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/locotrack/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4"
-            type="video/mp4">
+      <h2 class="title is-4" style="margin-bottom: 0px;">LocoTrack Performance on DAVIS vs. EgoPoints</h2>
+      <div id="locotrack-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="locotrack-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/locotrack/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="locotrack-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video4">
-          <video poster="" id="video4" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/locotrack/cows_vs_P04_04_start_44043_end_44279_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="locotrack-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video5">
-          <video poster="" id="video5" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/locotrack/dog_vs_P08_09_start_3541_end_3968_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="locotrack-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video6">
-          <video poster="" id="video6" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/locotrack/loading_vs_P10_04_start_128680_end_128946_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="locotrack-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/davis_vs_cotracker/locotrack/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4"
-            type="video/mp4">
+        <div class="item">
+          <video id="locotrack-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
           </video>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
+
+
 
 <!-- Performance Table Section -->
 <section class="section is-small">
@@ -495,26 +440,39 @@
 <!-- End Performance Table Section -->
 
 
+
 <!-- Image carousel -->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-          <!-- Your image here -->
-          <h2 class="title is-3">EgoPoints dataset </h2>
-          <h2 class="subtitle has-text-centered" style="
-          width: 100%;
-          margin: auto;
-          text-align: left !important"> 
-          Example of sparsely annotated sequences from EgoPoints benchmark. The dashed lines represent dynamic object tracks, while solid lines show scene point tracks.
+      <h2 class="title is-3">EgoPoints dataset </h2>
+      <h2 class="subtitle has-text-centered" style="
+      width: 100%;
+      margin: auto;
+      text-align: left !important"> 
+          Examples of sparsely annotated sequences from EgoPoints benchmark. The dashed lines represent dynamic object tracks, while solid lines show scene point tracks.
+      </h2>
 
-        </h2>
-          <img src="static/images/figure_example_annotations_dashed.png" alt="MY ALT TEXT" style="display: block; margin: auto;" width="90%">
+      <div id="results-carousel" class="carousel4 results-carousel">
+       <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/figure_example_annotations_dashed1.png" alt="MY ALT TEXT"/>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/figure_example_annotations_dashed2.png" alt="MY ALT TEXT"/>
 
-    </div>
-  </div>        
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/figure_example_annotations_dashed3.png" alt="MY ALT TEXT"/>
+
+     </div>
+  </div>
+</div>
+</div>
 </section>
 <!-- End image carousel -->
-
 
 
 <!-- Image carousel -->
@@ -591,26 +549,50 @@
 <!-- End video carousel -->
 
 
-
-<!-- Youtube video -->
-<section class="hero is-small">
+<!-- Video carousel -->
+<section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
-      <!-- Paper video. -->
       <h2 class="title is-3">Comparison between CotrackerV2 baseline and fine-tuned model</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="static/videos/EgoPoints_supp_samples.mp4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
+      <h2 class="subtitle has-text-centered" style="
+      width: 100%;
+      margin: auto;
+      text-align: left !important"> 
+      In these videos, we qualitatively compare the performance of the baseline and fine-tuned Cotracker models on K-EPIC, highlighting their improvements in tracking and re-identifying points.
+      <div id="results-carousel" class="carousel3 results-carousel">
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/baseline_vs_finetuned/processed_0_P25_101_from_5-22_to_5-24_dense.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/baseline_vs_finetuned/processed_1_P25_107_start_97970_end_98300_dense.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video4">
+          <video poster="" id="video4" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/baseline_vs_finetuned/processed_2_P03_112_start_2496_end_2697_dense.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video5">
+          <video poster="" id="video5" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/baseline_vs_finetuned/processed_3_P04_03_start_4019_end_4147_dense.mp4"
+            type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End youtube video -->
+<!-- End video carousel -->
 
 
 

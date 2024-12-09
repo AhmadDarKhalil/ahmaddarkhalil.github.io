@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="EgoPoints introduces a benchmark for point tracking in egocentric videos with challenging annotations, innovative evaluation metrics, and improved tracking accuracy.">
+  <meta property="og:title" content="EgoPoints: Advancing Point Tracking for Egocentric Videos"/>
+  <meta property="og:description" content="EgoPoints is a benchmark for point tracking in egocentric videos, featuring 4.7K annotated tracks, 11K semi-real sequences, and performance improvements for state-of-the-art methods."/>
+  <meta property="og:url" content="https://ahmaddarkhalil.github.io/EgoPoints/"/>
+  <meta property="og:image" content="static/images/figure1.png"/> <!-- Replace with your image URL -->
+  
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>EgoPoints: Advancing Point Tracking for Egocentric Videos</title>
+  <link rel="icon" type="image/x-icon" href="static/images/icon.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">EgoPoints: Advancing Point Tracking for Egocentric Videos</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://ahmaddarkhalil.github.io/" target="_blank">Ahmad Darkhalil</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://github.com/rhodriguerrier" target="_blank">Rhodri Guerrier</a><sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://adamharley.com/" target="_blank">Adam W. Harley</a><sup>2</sup>,</span>
+                    <span class="author-block">
+                      <a href="https://dimadamen.github.io/" target="_blank">Dima Damen</a><sup>1</sup>,</span>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"> University of Bristol<sup>1</sup>, Stanford University<sup>2</sup> <br>WACV 2025</span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2412.04592.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/AhmadDarKhalil/EgoPoints" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2412.04592" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce EgoPoints, a benchmark for point tracking in egocentric videos. We annotate 4.7K challenging tracks in egocentric sequences, including 9x more points that go out-of-view and 59x more points that require re-identification (ReID) after returning to view, compared to the popular TAP-Vid-DAVIS evaluation benchmark. To measure the performance of models on such challenging points, we introduce evaluation metrics that particularly monitor tracking on points in-view, out-of-view, and those that require re-identification.
+        </p>
+        <p>
+            We then propose a pipeline to create semi-real sequences, with automatic ground truth. We generate 11K sequences by combining dynamic Kubric objects with scene points from EPIC Fields. When fine-tuning state-of-the-art methods on these sequences and evaluating on our annotated EgoPoints sequences, we improve CoTracker across all metrics including the tracking accuracy δ<sup>★</sup><sub>avg</sub> by 2.7 percentage points and accuracy on ReID sequences (ReIDδ<sub>avg</sub>) by 2.4 points. We also improve δ<sup>★</sup><sub>avg</sub> and ReIDδ<sub>avg</sub> of PIPs++ by 0.3 and 2.2 respectively.
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+<!-- Introduction Section -->
+<section class="section" style="margin-bottom: -2%;">
+  <div class="container">
+    <h1 class="title is-3">Qualitative Performance on DAVIS vs. EgoPoints</h1>
+    <p class="subtitle">
+      Below we present the qualitative performance of several state-of-the-art methods on both the DAVIS and EgoPoints datasets. 
+      These comparisons highlight the complexity and challenges introduced by our dataset, as many top-performing approaches 
+      struggle or degrade in the more difficult scenarios it provides.
+    </p>
+  </div>
+</section>
+
+
+<!-- PIPs++ Subsection -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4 " style="margin-bottom: 0px;">PIPs++ Performance on DAVIS vs. EgoPoints</h2>
+      <div id="pips-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="pips-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="pips-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="pips-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="pips-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="pips-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="pips-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/pips2/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CotrackerV2 Subsection -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4" style="margin-bottom: 0px;">CotrackerV2 Performance on DAVIS vs. EgoPoints</h2>
+      <div id="cotracker2-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="cotracker2-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker2-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker2-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker2-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker2-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker2-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker2/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CotrackerV3 Subsection -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4" style="margin-bottom: 0px;">CotrackerV3 Performance on DAVIS vs. EgoPoints</h2>
+      <div id="cotracker3-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="cotracker3-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker3-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker3-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker3-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker3-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="cotracker3-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/cotracker3/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAPIR Subsection -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4" style="margin-bottom: 0px;">TAPIR Performance on DAVIS vs. EgoPoints</h2>
+      <div id="tapir-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="tapir-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="tapir-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="tapir-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="tapir-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="tapir-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="tapir-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/tapir/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LocoTrack Subsection -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4" style="margin-bottom: 0px;">LocoTrack Performance on DAVIS vs. EgoPoints</h2>
+      <div id="locotrack-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="locotrack-video2" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/blackswan_vs_P02_107_start_4511_end_4858_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="locotrack-video3" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/car-roundabout_vs_P03_101_start_8862_end_9234_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="locotrack-video4" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/cows_vs_P04_04_start_44043_end_44279_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="locotrack-video5" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/dog_vs_P08_09_start_3541_end_3968_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="locotrack-video6" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/loading_vs_P10_04_start_128680_end_128946_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="locotrack-video1" autoplay controls muted loop>
+            <source src="static/videos/davis_vs_cotracker/locotrack/bike-packing_vs_P01_09_start_162985_end_163455_compressed.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Performance Table Section -->
+<section class="section is-small">
+  <div class="container is-four-fifths">
+    <h2 class="title is-3">Performance Comparison</h2>
+    <h5 class="subtitle has-text-centered" style="
+    width: 100%;
+    margin: auto;
+    text-align: left !important"> 
+          Performance of point tracking baselines on the commonly used benchmark TAP-Vid-DAVIS compared to our 
+          EgoPoints evaluation benchmark on the main metric δ<sub>avg</sub>. Additionally, metrics showcasing ReID, 
+          out-of-view (OOVA) and in-view (IVA) accuracy are included to highlight model failures. We use the 
+          query-first mode in all evaluations.
+  </h5>
+    <div class="content">
+      <table class="table is-striped is-hoverable is-fullwidth">
+
+        <thead>
+          <tr>
+            <th></th>
+            <th>TAP-Vid-DAVIS</th>
+            <th colspan="4" style="padding-left:20%;">EgoPoints</th>
+          </tr>
+          <tr>
+            <th>Model</th>
+            <th>δ<sub>avg</sub>↑</th>
+            <th>δ<sub>avg</sub>↑</th>
+            <th>ReID δ<sub>avg</sub>↑</th>
+            <th>OOVA↑</th>
+            <th>IVA↑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PIPs++</td>
+            <td>64.0</td>
+            <td>36.9</td>
+            <td>14.6</td>
+            <td>50.4</td>
+            <td>89.2</td>
+          </tr>
+          <tr>
+            <td>CoTracker</td>
+            <td>74.7</td>
+            <td>38.5</td>
+            <td>4.8</td>
+            <td><strong>81.4</strong></td>
+            <td>73.4</td>
+          </tr>
+          <tr>
+            <td>BootsTAPIR Online</td>
+            <td>65.2</td>
+            <td>39.6</td>
+            <td>0.0</td>
+            <td>0.0</td>
+            <td><strong>100.0</strong></td>
+          </tr>
+          <tr>
+            <td>LocoTrack</td>
+            <td>75.3</td>
+            <td><strong>59.4</strong></td>
+            <td>0.1</td>
+            <td>0.2</td>
+            <td>99.9</td>
+          </tr>
+          <tr>
+            <td>CoTracker v3</td>
+            <td><strong>77.2</strong></td>
+            <td>50.0</td>
+            <td><strong>15.0</strong></td>
+            <td>31.8</td>
+            <td>99.3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- End Performance Table Section -->
+
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+          <!-- Your image here -->
+          <h2 class="title is-3">EgoPoints dataset </h2>
+          <h2 class="subtitle has-text-centered" style="
+          width: 100%;
+          margin: auto;
+          text-align: left !important"> 
+          Example of sparsely annotated sequences from EgoPoints benchmark. The dashed lines represent dynamic object tracks, while solid lines show scene point tracks.
+
+        </h2>
+          <img src="static/images/figure_example_annotations_dashed.png" alt="MY ALT TEXT" style="display: block; margin: auto;" width="90%">
+
+    </div>
+  </div>        
+</section>
+<!-- End image carousel -->
+
+
+
+<!-- Image carousel -->
+<section class="hero is-small ">
+  <div class="hero-body">
+    <div class="container">
+          <!-- Your image here -->
+          <h2 class="title is-3">K-EPIC pipeline </h2>
+          <h2 class="subtitle has-text-centered" style="
+          width: 100%;
+          margin: auto;
+          text-align: left !important"> 
+          The pipeline for K-EPIC. This includes projecting 3D points as tracks and filtering them using CoTracker to get scene points (left). Additionally, we sample 3D objects and tracks from TAP-Vid-KUBRIC (top right). 
+
+        </h2>
+          <img src="static/images/kepic_pipeline_v2-min.png" alt="MY ALT TEXT" style="display: block; margin: 2% auto auto auto ;" width="90%">
+
+    </div>
+  </div>        
+</section>
+<!-- End image carousel -->
+
+<!-- Video carousel -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">K-EPIC samples</h2>
+      <h2 class="subtitle has-text-centered" style="
+      width: 100%;
+      margin: auto;
+      text-align: left !important"> 
+      Examples from the K-EPIC dataset. A white border around each circle denotes that the corresponding point is out of view. The dataset encompasses both in-view and out-of-view trackings.
+    </h2>
+      <div id="results-carousel" class="carousel2 results-carousel">
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/kepic/0124_P01_105_24717_24749_projected_3d_converted.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/kepic/1129_P06_111_31661_31693_projected_3d_converted.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video4">
+          <video poster="" id="video4" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/kepic/5629_P35_102_31178_31210_projected_3d_converted.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video5">
+          <video poster="" id="video5" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/kepic/5630_P35_102_31211_31243_projected_3d_converted.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video6">
+          <video poster="" id="video6" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/kepic/9846_P22_112_2195_2227_projected_3d_converted.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End video carousel -->
+
+
+<!-- Video carousel -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Comparison between CotrackerV2 baseline and fine-tuned model</h2>
+      <h2 class="subtitle has-text-centered" style="
+      width: 100%;
+      margin: auto;
+      text-align: left !important"> 
+      In these videos, we qualitatively compare the performance of the baseline and fine-tuned Cotracker models on K-EPIC, highlighting their improvements in tracking and re-identifying points.
+      <div id="results-carousel" class="carousel3 results-carousel">
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/baseline_vs_finetuned/processed_0_P25_101_from_5-22_to_5-24_dense.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/baseline_vs_finetuned/processed_1_P25_107_start_97970_end_98300_dense.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video4">
+          <video poster="" id="video4" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/baseline_vs_finetuned/processed_2_P03_112_start_2496_end_2697_dense.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video5">
+          <video poster="" id="video5" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/baseline_vs_finetuned/processed_3_P04_03_start_4019_end_4147_dense.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End video carousel -->
+
+
+
+<!-- Image carousel -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+          <!-- Your image here -->
+          <h2 class="title is-3">Download the data </h2>
+          <a href="https://www.dropbox.com/scl/fo/tfvctluqu3cr17jr6q0td/AA6h6GlV-x6QeuupmeLejzA?rlkey=r0q12vbi6wour6qsteklivb6p&st=1e4b4dnn&dl=0" target="_blank" class="link-container">
+            <img src="static/images/training.png" alt="Training Data" class="link-icon"> K-EPIC - Training data
+          </a>
+          <a href="https://www.dropbox.com/scl/fo/tfvctluqu3cr17jr6q0td/AA6h6GlV-x6QeuupmeLejzA?rlkey=r0q12vbi6wour6qsteklivb6p&st=1e4b4dnn&dl=0" target="_blank" class="link-container">
+            <img src="static/images/evaluation.png" alt="Evaluation Data" class="link-icon"> EgoPoints - Evaluation data
+          </a>
+          
+    </div>
+  </div>        
+</section>
+<!-- End image carousel -->
+
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+          <!-- Your image here -->
+          <h2 class="title is-3">Acknowledgments </h2>
+          <p>This work proposes a new annotations
+            benchmark that is publicly available, and builds on publicly avail-
+            able dataset EPIC-KITCHENS. It is supported by EPSRC Doc-
+            toral Training Program, EPSRC UMPIRE EP/T004991/1 and EP-
+            SRC Programme Grant VisualAI EP/T028572/1. We acknowledge
+            the use of the EPSRC funded Tier 2 facility JADE-II.</p>
+          
+    </div>
+  </div>        
+</section>
+<!-- End image carousel -->
+
+
+
+
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{darkhalil2025egopoints,
+        title={EgoPoints: Advancing Point Tracking for Egocentric Videos}, 
+        author={Ahmad Darkhalil and Rhodri Guerrier and Adam W. Harley and Dima Damen},
+        booktitle= {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+        year={2025}
+  }</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
