@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="HOI-DETR: a transformer-based framework for detecting hands, hand-held objects, and their interactions in images and video.">
+  <meta property="og:title" content="HOI-DETR: Improving and Evaluating Hand-Object Interaction Detection"/>
+  <meta property="og:description" content="HOI-DETR jointly detects hands, 1st objects, and 2nd objects and predicts their pairwise interaction links in a single forward pass, achieving +20 mAP over the previous state of the art."/>
+  <meta property="og:url" content="https://ahmaddarkhalil.github.io/HOI-DETR/"/>
+  <meta property="og:image" content="static/images/teaser.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:title" content="HOI-DETR: Improving and Evaluating Hand-Object Interaction Detection">
+  <meta name="twitter:description" content="HOI-DETR jointly detects hands, 1st objects, and 2nd objects and predicts their pairwise interaction links in a single forward pass.">
+  <meta name="twitter:image" content="static/images/teaser.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="hand-object interaction, detection, transformer, egocentric video, DETR, Co-DETR">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HOI-DETR: Improving and Evaluating Hand-Object Interaction Detection</title>
+  <link rel="icon" type="image/x-icon" href="static/images/icon.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <style>
+    :root {
+      --hand-red:   #e05252;
+      --first-gold: #d4a017;
+      --second-teal:#2ca6a4;
+    }
+    .tag-hand   { background: var(--hand-red);   color: #fff; border-radius: 4px; padding: 1px 6px; font-size: 0.85em; }
+    .tag-first  { background: var(--first-gold);  color: #fff; border-radius: 4px; padding: 1px 6px; font-size: 0.85em; }
+    .tag-second { background: var(--second-teal); color: #fff; border-radius: 4px; padding: 1px 6px; font-size: 0.85em; }
+    .results-table th { background-color: #f5f5f5; text-align: center; }
+    .results-table td, .results-table th { text-align: center; vertical-align: middle; }
+    .results-table tr.ours td { font-weight: bold; background-color: #fffbe6; }
+    .section-nav { font-size: 1rem; }
+    .section-nav a { margin: 0 4px; }
+    /* All white backgrounds */
+    section, .hero, .hero.is-light, .hero.is-small { background-color: #fff !important; }
+    /* Center all titles */
+    h2.title, h3.title, h4.title { text-align: center; }
+  </style>
+</head>
+<body>
+
+
+<!-- ══════════════════════════════════════════════════ HERO -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-1 publication-title">
+            Improving and Evaluating Hand-Object Interaction Detection
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://ahmaddarkhalil.github.io/" target="_blank">Ahmad Darkhalil</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://dimadamen.github.io/" target="_blank">Dima Damen</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cs.nyu.edu/~fouhey/" target="_blank">David Fouhey</a><sup>2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              University of Bristol<sup>1</sup>, New York University<sup>2</sup>
+            </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark" style="pointer-events:none; opacity:0.5;">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper (coming soon)</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/AhmadDarKhalil/HOI-DETR" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://huggingface.co/ahmaddarkhalil/hoi-detr" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Checkpoint</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ TEASER -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <img src="static/images/teaser.png" alt="HOI-DETR teaser" style="max-width:100%;">
+      <p class="is-size-6 mt-2" style="color:#555;">
+        HOI-DETR predicts all visible
+        <span class="tag-hand">hands</span>,
+        <span class="tag-first">1st objects</span> (directly held), and
+        <span class="tag-second">2nd objects</span> (acted upon through a tool),
+        together with their pairwise interaction links — in a single forward pass.
+        Zero-shot examples across diverse scenes, viewpoints, and domains.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ ABSTRACT -->
+<section class="section" style="padding-bottom:1rem;" id="abstract">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified" style="margin-bottom:0.5rem;">
+          <p>
+            Understanding hands and the objects they interact with, both directly and through tools,
+            is a key step for tasks ranging from action perception to 3D reconstruction and robotics.
+            We introduce <strong>HOI-DETR</strong>, a new framework that integrates hand-object and
+            object-object interaction into the Co-DETR architecture, producing a method that jointly
+            detects all visible <span class="tag-hand">hands</span>,
+            <span class="tag-first">1st objects</span> (objects in direct physical interaction with a hand), and
+            <span class="tag-second">2nd objects</span> (objects that the 1st object acts upon when used as a tool),
+            and predicts their pairwise interaction links in a single forward pass.
+          </p>
+          <p>
+            We accompany the model with a comprehensive HOI evaluation suite spanning four diverse
+            datasets, including a new video benchmark derived from the HD-EPIC dataset and refined
+            annotations for the Hands23 benchmark. HOI-DETR significantly improves over the previous
+            state of the art, with mAP gains of over 20 percentage points, and demonstrates strong
+            zero-shot generalisation to unseen datasets and domains.
+          </p>
+        </div>
+
+        <div class="content has-text-justified is-size-5 publication-authors section-nav" style="margin-bottom:0;">
+          <strong>Method:</strong>
+          <a href="#method">Overview</a> |
+          <a href="#hands23">Refined Hands23</a>
+          &nbsp;•&nbsp;
+          <strong>Results:</strong>
+          <a href="#qualitative">Qualitative</a> |
+          <a href="#quantitative">Quantitative</a>
+          &nbsp;•&nbsp;
+          <strong>Resources:</strong>
+          <a href="#download">Download</a> |
+          <a href="#acknowledgements">Acknowledgements</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ METHOD -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Method</h2>
+    <div class="content has-text-justified">
+      <p>
+        HOI-DETR builds on the Co-DETR architecture, training a transformer backbone end-to-end
+        to predict hands, objects, and their interactions. An <strong>interaction MLP head</strong>
+        operates on pairs of decoder token embeddings to predict binary interaction relationships
+        for valid pairs:
+        <span class="tag-hand">hand</span> → <span class="tag-first">1st object</span>
+        and
+        <span class="tag-first">1st object</span> → <span class="tag-second">2nd object</span>.
+        The module is supervised at every decoder layer with a focal loss and trained end-to-end
+        with the detector.
+      </p>
+    </div>
+    <figure class="image">
+      <img src="static/images/method.png" alt="HOI-DETR method diagram">
+    </figure>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ REFINED HANDS23 -->
+<section class="section" id="hands23">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Refined Hands23</h2>
+    <div class="content has-text-justified">
+      <p>
+        The original Hands23 annotation pipeline produced duplicate object annotations arising from a
+        hand-centric scheme in which each hand was independently annotated. We built a refinement
+        pipeline that reviewed 26.2k images — correcting 56.2% of them by removing duplicate boxes
+        and remapping all interaction links for consistency. The figure below shows representative
+        before/after corrections.
+      </p>
+    </div>
+    <figure class="image">
+      <img src="static/images/hands23_correction.png" alt="Hands23 before and after correction">
+    </figure>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ QUALITATIVE -->
+<section class="section" id="qualitative">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Qualitative Results</h2>
+    <p class="subtitle has-text-centered">
+      HOI-DETR detects hands, 1st objects, and 2nd objects and predicts their interaction links
+      across diverse scenes and domains — including out-of-distribution footage never seen during training.
+      Each video shows (left) Hands23 baseline and (right) HOI-DETR.
+    </p>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+
+
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/comparison_1x3_4_P01-20240202-110250_7652edef438675dd_start.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/comparison_1x3_5_P008-20240613-122900_11b58bd75b6553b7_start.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/comparison_1x3_6_P06-20240510-090328_9dfb466fc54431db_end.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/comparison_1x3_7_P01-20240202-195538_be6d52ab9002e01d_start.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/comparison_1x3_8_P04-20240414-172534_340d57b3c05c6889_start.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/comparison_1x3_0_tukJnc5fpZo_47.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/comparison_1x3_1_csaicDP4T8M_85.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/comparison_1x3_2_62K8k22wZxQ_101.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4">Cross-Dataset Comparison</h2>
+    <p class="subtitle has-text-centered" style="margin-bottom:1rem;">
+      Qualitative comparison between Hands23 and HOI-DETR on the FineBio dataset
+      (out-of-distribution biology lab footage). ✗ marks invalid interaction links or false positives.
+    </p>
+    <figure class="image">
+      <img src="static/images/qualitive_finebio1_compressed.png" alt="Qualitative comparison on FineBio">
+    </figure>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ QUANTITATIVE -->
+<section class="section" id="quantitative">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Quantitative Results</h2>
+
+    <h3 class="title is-4">Hands23 Val (Refined Annotations)</h3>
+    <div class="table-container" style="margin-bottom:2.5rem;">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Hand AP₅₀</th>
+            <th>1st obj AP₅₀</th>
+            <th>2nd obj AP₅₀</th>
+            <th>F1 inter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
+            <td>85.2</td><td>59.4</td><td>46.2</td><td>90.7</td>
+          </tr>
+          <tr class="ours">
+            <td>HOI-DETR (ours)</td>
+            <td>93.1</td><td>86.5</td><td>78.7</td><td>95.5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title is-4">Zero-Shot Cross-Dataset (1st obj AP₅₀)</h3>
+    <div class="table-container">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th><a href="https://github.com/SupreethN/HOISTFormer" target="_blank">HOIST</a></th>
+            <th>HD-EPIC-HOI</th>
+            <th><a href="https://github.com/aistairc/FineBio" target="_blank">FineBio</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
+            <td>43.1</td><td>42.4</td><td>26.0</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/SupreethN/HOISTFormer" target="_blank">HOIST</a></td>
+            <td>70.7</td><td>28.4</td><td>—</td>
+          </tr>
+          <tr class="ours">
+            <td>HOI-DETR (ours)</td>
+            <td>76.6</td><td>67.6</td><td>55.8</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ DOWNLOAD -->
+<section class="section" id="download">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Download</h2>
+    <div class="is-size-5 publication-authors">
+
+      <a href="https://huggingface.co/ahmaddarkhalil/hoi-detr/resolve/main/epoch_5.pth"
+         target="_blank" style="display:block; margin-bottom:0.75rem;">
+        <span class="icon"><i class="fas fa-download"></i></span>
+        &nbsp;HOI-DETR checkpoint (ViT-L/16, trained on Hands23)
+      </a>
+
+      <a href="https://github.com/ddshan/hands23_data" target="_blank"
+         style="display:block; margin-bottom:0.75rem;">
+        <span class="icon"><i class="fas fa-database"></i></span>
+        &nbsp;Hands23 dataset — images and splits
+      </a>
+
+      <a href="https://github.com/AhmadDarKhalil/HOI-DETR" target="_blank"
+         style="display:block;">
+        <span class="icon"><i class="fab fa-github"></i></span>
+        &nbsp;Code + refined annotation file
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ ACKNOWLEDGEMENTS -->
+<section class="section" id="acknowledgements">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Acknowledgements</h2>
+    <p>
+      This work builds on <a href="https://github.com/Sense-X/Co-DETR" target="_blank">Co-DETR</a>
+      and <a href="https://github.com/open-mmlab/mmdetection" target="_blank">MMDetection</a>.
+      We thank the authors of Hands23, HOIST, FineBio, and HD-EPIC for making their datasets
+      publicly available. We thank <strong>Sidhartha Reddy Potu</strong> for his contributions
+      in the early stages of this project.
+      <!-- Add funding here, e.g.:
+      This work is supported by EPSRC Programme Grant VisualAI EP/T028572/1.
+      We acknowledge the use of the Isambard-AI National Research Facility.
+      -->
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>
+            adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
