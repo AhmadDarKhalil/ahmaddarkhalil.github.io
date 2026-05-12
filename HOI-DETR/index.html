@@ -48,6 +48,10 @@
     .results-table tr.ours td { font-weight: bold; background-color: #fffbe6; }
     .section-nav { font-size: 1rem; }
     .section-nav a { margin: 0 4px; }
+    /* All white backgrounds */
+    section, .hero, .hero.is-light, .hero.is-small { background-color: #fff !important; }
+    /* Center all titles */
+    h2.title, h3.title, h4.title { text-align: center; }
   </style>
 </head>
 <body>
@@ -69,16 +73,16 @@
               <a href="https://ahmaddarkhalil.github.io/" target="_blank">Ahmad Darkhalil</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              Author Two<sup>1</sup>,
+              <a href="https://dimadamen.github.io/" target="_blank">Dima Damen</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://dimadamen.github.io/" target="_blank">Dima Damen</a><sup>1</sup>
+              <a href="https://cs.nyu.edu/~fouhey/" target="_blank">David Fouhey</a><sup>2</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              University of Bristol<sup>1</sup>
+              University of Bristol<sup>1</sup>, New York University<sup>2</sup>
             </span>
           </div>
 
@@ -93,17 +97,10 @@
               </span>
 
               <span class="link-block">
-                <a href="https://github.com/your-org/Co-DETR" target="_blank"
+                <a href="https://github.com/AhmadDarKhalil/HOI-DETR" target="_blank"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
-                </a>
-              </span>
-
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark" style="pointer-events:none; opacity:0.5;">
-                  <span class="icon"><i class="ai ai-arxiv"></i></span>
-                  <span>arXiv (coming soon)</span>
                 </a>
               </span>
 
@@ -143,7 +140,7 @@
 
 
 <!-- ══════════════════════════════════════════════════ ABSTRACT -->
-<section class="section hero is-light" style="padding-bottom:1rem;" id="abstract">
+<section class="section" style="padding-bottom:1rem;" id="abstract">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
@@ -213,7 +210,7 @@
 
 
 <!-- ══════════════════════════════════════════════════ REFINED HANDS23 -->
-<section class="section hero is-light" id="hands23">
+<section class="section" id="hands23">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Refined Hands23</h2>
     <div class="content has-text-justified">
@@ -234,11 +231,12 @@
 
 <!-- ══════════════════════════════════════════════════ QUALITATIVE -->
 <section class="section" id="qualitative">
-  <div class="container">
+  <div class="container is-max-desktop">
     <h2 class="title is-3">Qualitative Results</h2>
-    <p class="subtitle">
+    <p class="subtitle has-text-centered">
       HOI-DETR detects hands, 1st objects, and 2nd objects and predicts their interaction links
       across diverse scenes and domains — including out-of-distribution footage never seen during training.
+      Each video shows (left) Hands23 baseline and (right) HOI-DETR.
     </p>
   </div>
 </section>
@@ -246,31 +244,47 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-4">Demo — Interaction Predictions</h2>
-      <p class="subtitle" style="margin-bottom: 1rem;">
-        Arrows show predicted interaction links:
-        <span class="tag-hand">hand</span> → <span class="tag-first">1st object</span>
-        → <span class="tag-second">2nd object</span>.
-      </p>
       <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
+
+
+        <div class="item">
           <video poster="" autoplay controls muted loop height="100%">
-            <source src="static/videos/demo/example1.mp4" type="video/mp4">
+            <source src="static/videos/compressed_comparison_1x3_4_P01-20240202-110250_7652edef438675dd_start.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video2">
+        <div class="item">
           <video poster="" autoplay controls muted loop height="100%">
-            <source src="static/videos/demo/example2.mp4" type="video/mp4">
+            <source src="static/videos/compressed_comparison_1x3_5_P008-20240613-122900_11b58bd75b6553b7_start.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video3">
+        <div class="item">
           <video poster="" autoplay controls muted loop height="100%">
-            <source src="static/videos/demo/example3.mp4" type="video/mp4">
+            <source src="static/videos/compressed_comparison_1x3_6_P06-20240510-090328_9dfb466fc54431db_end.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="item item-video4">
+        <div class="item">
           <video poster="" autoplay controls muted loop height="100%">
-            <source src="static/videos/demo/example4.mp4" type="video/mp4">
+            <source src="static/videos/compressed_comparison_1x3_7_P01-20240202-195538_be6d52ab9002e01d_start.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/compressed_comparison_1x3_8_P04-20240414-172534_340d57b3c05c6889_start.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/compressed_comparison_1x3_0_tukJnc5fpZo_47.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/compressed_comparison_1x3_1_csaicDP4T8M_85.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay controls muted loop height="100%">
+            <source src="static/videos/compressed_comparison_1x3_2_62K8k22wZxQ_101.mp4" type="video/mp4">
           </video>
         </div>
       </div>
@@ -278,85 +292,73 @@
   </div>
 </section>
 
-<section class="hero is-small is-light">
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4">Cross-Dataset Comparison</h2>
+    <p class="subtitle has-text-centered" style="margin-bottom:1rem;">
+      Qualitative comparison between Hands23 and HOI-DETR on the FineBio dataset
+      (out-of-distribution biology lab footage). ✗ marks invalid interaction links or false positives.
+    </p>
+    <figure class="image">
+      <img src="static/images/qualitive_finebio1_compressed.png" alt="Qualitative comparison on FineBio">
+    </figure>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ CHALLENGING VIDEOS -->
+<section class="hero is-small">
   <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-4">Cross-Dataset Comparison</h2>
-      <p class="subtitle" style="margin-bottom:1rem;">
-        Qualitative comparison between Hands23 and HOI-DETR on the FineBio dataset
-        (out-of-distribution biology lab footage). ✗ marks invalid interaction links or false positives.
+    <div class="container">
+      <h2 class="title is-4">Challenging In-the-Wild Videos</h2>
+      <p class="subtitle" style="margin-bottom:1.5rem;">
+        Predictions overlaid on full-HD YouTube footage the model was never trained on.
+        Each link opens an interactive page: the original video plays from YouTube
+        with bounding boxes and interaction links drawn on top in real time.
+        Press <kbd>[</kbd> / <kbd>]</kbd> to nudge sync, <kbd>d</kbd> to toggle the debug HUD.
       </p>
-      <figure class="image">
-        <img src="static/images/qualitative_finebio.png" alt="Qualitative comparison on FineBio">
-      </figure>
-    </div>
-  </div>
-</section>
+      <div class="columns is-multiline">
 
-
-    <!-- ══════════════════════════════════════════════════ CHALLENGING VIDEOS -->
-    <section class=\"hero is-small\">
-      <div class=\"hero-body\">
-        <div class=\"container\">
-          <h2 class=\"title is-4\">Challenging In-the-Wild Videos</h2>
-          <p class=\"subtitle\" style=\"margin-bottom:1.5rem;\">
-            Predictions overlaid on full-HD YouTube footage the model was never trained on.
-            Each link opens an interactive page: the original video plays from YouTube
-            with bounding boxes and interaction links drawn on top in real time.
-            Press <kbd>[</kbd> / <kbd>]</kbd> to nudge sync, <kbd>d</kbd> to toggle the debug HUD.
-          </p>
-          <div class=\"columns is-multiline\">
-
-            <!-- ── add one .column block per video ── -->
-    <div class="column is-one-third">
-      <div class="card">
-        <div class="card-content">
-          <p class="title is-6">French Magician — Sleight of Hand</p>
-          <p class="subtitle is-7" style="color:#888;">Fast, deformable hand motion; partial occlusion</p>
-        </div>
-        <footer class="card-footer">
-          <a href="static/overlays/YTDown_YouTube_French-Magician-Does-CRAZY-Quick-Sleight_Media_WSGfKuDsIfA_003_480p_overlay.html"
-            class="card-footer-item" target="_blank">
-            ▶ View overlay
-          </a>
-        </footer>
-      </div>
-    </div>
-
-    <div class="column is-one-third">
-      <div class="card">
-        <div class="card-content">
-          <p class="title is-6">Full Day Chinese Food Tour — Flushing NY</p>
-          <p class="subtitle is-7" style="color:#888;">Dense hand-object interactions; crowded street food scene</p>
-        </div>
-        <footer class="card-footer">
-          <a href="static/overlays/YTDown_YouTube_FULL-DAY-CHINESE-FOOD-TOUR-IN-FLUSHING-N_Media_mgC5iH7o0yM_003_480p_overlay.html"
-            class="card-footer-item" target="_blank">
-            ▶ View overlay
-          </a>
-        </footer>
-      </div>
-    </div>
-
-        <!-- duplicate and edit below for each additional video -->
-        <!--
-        <div class=\"column is-one-third\">
-          <div class=\"card\">
-            <div class=\"card-content\">
-              <p class=\"title is-6\">Video title here</p>
-              <p class=\"subtitle is-7\" style=\"color:#888;\">One-line description of the challenge</p>
+        <div class="column is-one-third">
+          <div class="card">
+            <div class="card-content">
+              <p class="title is-6">French Magician — Sleight of Hand</p>
+              <p class="subtitle is-7" style="color:#888;">Fast, deformable hand motion; partial occlusion</p>
             </div>
-            <footer class=\"card-footer\">
-              <a href=\"static/overlays/YOUR_OVERLAY_FILENAME.html\"
-                 class=\"card-footer-item\" target=\"_blank\">
-                ▶ View overlay
-              </a>
+            <footer class="card-footer">
+              <a href="static/overlays/YTDown_YouTube_French-Magician-Does-CRAZY-Quick-Sleight_Media_WSGfKuDsIfA_003_480p_overlay.html"
+                 class="card-footer-item" target="_blank">▶ View overlay</a>
             </footer>
           </div>
         </div>
-        -->
 
-      </div><!-- /columns -->
+        <div class="column is-one-third">
+          <div class="card">
+            <div class="card-content">
+              <p class="title is-6">Full Day Chinese Food Tour — Flushing NY</p>
+              <p class="subtitle is-7" style="color:#888;">Dense hand-object interactions; crowded street food scene</p>
+            </div>
+            <footer class="card-footer">
+              <a href="static/overlays/YTDown_YouTube_FULL-DAY-CHINESE-FOOD-TOUR-IN-FLUSHING-N_Media_mgC5iH7o0yM_003_480p_overlay.html"
+                 class="card-footer-item" target="_blank">▶ View overlay</a>
+            </footer>
+          </div>
+        </div>
+
+        <div class="column is-one-third">
+          <div class="card">
+            <div class="card-content">
+              <p class="title is-6">Eden Choi — Impossible Magic</p>
+              <p class="subtitle is-7" style="color:#888;">Extreme speed; fingers and small objects at close range</p>
+            </div>
+            <footer class="card-footer">
+              <a href="static/overlays/YTDown_YouTube_Eden-Choi-s-IMPOSSIBLE-magic-will-have-y_Media_uua-9WFghbc_003_480p_overlay.html"
+                 class="card-footer-item" target="_blank">▶ View overlay</a>
+            </footer>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
@@ -424,67 +426,49 @@
 
 
 <!-- ══════════════════════════════════════════════════ DOWNLOAD -->
-<section class="hero is-small is-light" id="download">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Download</h2>
-      <div class="is-size-5 publication-authors">
+<section class="section" id="download">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Download</h2>
+    <div class="is-size-5 publication-authors">
 
-        <a href="https://huggingface.co/ahmaddarkhalil/hoi-detr/resolve/main/epoch_5.pth"
-           target="_blank" style="display:block; margin-bottom:0.75rem;">
-          <span class="icon"><i class="fas fa-download"></i></span>
-          &nbsp;HOI-DETR checkpoint (ViT-L/16, trained on Hands23)
-        </a>
+      <a href="https://huggingface.co/ahmaddarkhalil/hoi-detr/resolve/main/epoch_5.pth"
+         target="_blank" style="display:block; margin-bottom:0.75rem;">
+        <span class="icon"><i class="fas fa-download"></i></span>
+        &nbsp;HOI-DETR checkpoint (ViT-L/16, trained on Hands23)
+      </a>
 
-        <a href="https://github.com/ddshan/hands23_data" target="_blank"
-           style="display:block; margin-bottom:0.75rem;">
-          <span class="icon"><i class="fas fa-database"></i></span>
-          &nbsp;Hands23 dataset — images and splits
-        </a>
+      <a href="https://github.com/ddshan/hands23_data" target="_blank"
+         style="display:block; margin-bottom:0.75rem;">
+        <span class="icon"><i class="fas fa-database"></i></span>
+        &nbsp;Hands23 dataset — images and splits
+      </a>
 
-        <a href="https://github.com/your-org/Co-DETR" target="_blank"
-           style="display:block;">
-          <span class="icon"><i class="fab fa-github"></i></span>
-          &nbsp;Code + refined annotation file
-        </a>
+      <a href="https://github.com/AhmadDarKhalil/HOI-DETR" target="_blank"
+         style="display:block;">
+        <span class="icon"><i class="fab fa-github"></i></span>
+        &nbsp;Code + refined annotation file
+      </a>
 
-      </div>
     </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════════════════ ACKNOWLEDGEMENTS -->
-<section class="hero is-small" id="acknowledgements">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Acknowledgements</h2>
-      <p>
-        This work builds on <a href="https://github.com/Sense-X/Co-DETR" target="_blank">Co-DETR</a>
-        and <a href="https://github.com/open-mmlab/mmdetection" target="_blank">MMDetection</a>.
-        We thank the authors of Hands23, HOIST, FineBio, and HD-EPIC for making their datasets
-        publicly available. We thank <strong>Sidhartha Reddy Potu</strong> for his contributions
-        in the early stages of this project.
-        <!-- Add funding here, e.g.:
-        This work is supported by EPSRC Programme Grant VisualAI EP/T028572/1.
-        We acknowledge the use of the Isambard-AI National Research Facility.
-        -->
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════ BIBTEX -->
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{darkhalil2025hoidetr,
-  title   = {Improving and Evaluating Hand-Object Interaction Detection},
-  author  = {Darkhalil, Ahmad and others and Damen, Dima},
-  journal = {arXiv preprint},
-  year    = {2025}
-}</code></pre>
+<section class="section" id="acknowledgements">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Acknowledgements</h2>
+    <p>
+      This work builds on <a href="https://github.com/Sense-X/Co-DETR" target="_blank">Co-DETR</a>
+      and <a href="https://github.com/open-mmlab/mmdetection" target="_blank">MMDetection</a>.
+      We thank the authors of Hands23, HOIST, FineBio, and HD-EPIC for making their datasets
+      publicly available. We thank <strong>Sidhartha Reddy Potu</strong> for his contributions
+      in the early stages of this project.
+      <!-- Add funding here, e.g.:
+      This work is supported by EPSRC Programme Grant VisualAI EP/T028572/1.
+      We acknowledge the use of the Isambard-AI National Research Facility.
+      -->
+    </p>
   </div>
 </section>
 
