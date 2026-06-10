@@ -187,7 +187,10 @@
           </p>
         </div>
 
-        <div class="content has-text-justified is-size-5 publication-authors section-nav" style="margin-bottom:0;">
+<div class="content has-text-justified is-size-5 publication-authors section-nav" style="margin-bottom:0;">
+          <strong>Method:</strong>
+          <a href="#method">Overview</a>
+          &nbsp;•&nbsp;
           <strong>Zero-Shot Results:</strong>
           <a href="#video">Video</a> |
           <a href="#aria">Aria Gen 2</a> |
@@ -195,19 +198,39 @@
           <a href="#wild">In-the-Wild</a>
           &nbsp;•&nbsp;
           <strong>Quantitative:</strong>
+          <a href="#hands23">Refined Hands23</a> |
           <a href="#quantitative">Tables</a>
           &nbsp;•&nbsp;
-          <strong>Method:</strong>
-          <a href="#method">Overview</a> |
-          <a href="#hands23">Refined Hands23</a>
-          &nbsp;•&nbsp;
           <strong>Resources:</strong>
-          <a href="#download">Download</a> 
-          
+          <a href="#download">Download</a>
         </div>
 
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ METHOD -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Method</h2>
+    <div class="content has-text-justified">
+      <p>
+        HOI-DETR builds on the Co-DETR architecture, training a transformer backbone end-to-end
+        to predict hands, objects, and their interactions. An <strong>interaction MLP head</strong>
+        operates on pairs of decoder token embeddings to predict binary interaction relationships
+        for valid pairs:
+        <span class="tag-hand">hand</span> → <span class="tag-first">1st object</span>
+        and
+        <span class="tag-first">1st object</span> → <span class="tag-second">2nd object</span>.
+        The module is supervised at every decoder layer with a focal loss and trained end-to-end
+        with the detector.
+      </p>
+    </div>
+    <figure class="image">
+      <img src="static/images/method.png" alt="HOI-DETR method diagram">
+    </figure>
   </div>
 </section>
 
@@ -364,19 +387,6 @@
           </a>
         </div>
 
-        <div class="column is-one-third">
-          <a href="static/overlays/YTDown_YouTube_Eden-Choi-s-IMPOSSIBLE-magic-will-have-y_Media_uua-9WFghbc_003_480p_overlay.html"
-             target="_blank" class="overlay-card">
-            <span class="overlay-thumb">
-              <img src="static/overlays/YTDown_YouTube_Eden-Choi-s-IMPOSSIBLE-magic-will-have-y_Media_uua-9WFghbc_003_480p_overlay.png" alt="Eden Choi thumbnail">
-              <span class="play-badge">▶</span>
-            </span>
-            <div class="card-content">
-              <p class="title is-6">Eden Choi — Impossible Magic</p>
-              <p class="subtitle is-7" style="color:#888;">Extreme speed; fingers and small objects at close range</p>
-            </div>
-          </a>
-        </div>
 
         <div class="column is-one-third">
           <a href="static/overlays/YTDown_YouTube_Giving-Strangers-Belated-Christmas-Prese_Media_wDXnnL02-_E_002_720p_overlay.html"
@@ -394,6 +404,26 @@
 
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ REFINED HANDS23 -->
+<section class="section" id="hands23">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Refined Hands23</h2>
+    <div class="content has-text-justified">
+      <p>
+        The original Hands23 annotation pipeline produced duplicate object annotations arising from a
+        hand-centric scheme in which each hand was independently annotated. We built a refinement
+        pipeline that reviewed 26.2k images — correcting 56.2% of them by removing duplicate boxes
+        and remapping all interaction links for consistency. The figure below shows representative
+        before/after corrections.
+      </p>
+    </div>
+    <figure class="image">
+      <img src="static/images/hands23_correction.png" alt="Hands23 before and after correction">
+    </figure>
   </div>
 </section>
 
@@ -597,48 +627,10 @@
 </section>
 
 
-<!-- ══════════════════════════════════════════════════ METHOD -->
-<section class="section" id="method">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Method</h2>
-    <div class="content has-text-justified">
-      <p>
-        HOI-DETR builds on the Co-DETR architecture, training a transformer backbone end-to-end
-        to predict hands, objects, and their interactions. An <strong>interaction MLP head</strong>
-        operates on pairs of decoder token embeddings to predict binary interaction relationships
-        for valid pairs:
-        <span class="tag-hand">hand</span> → <span class="tag-first">1st object</span>
-        and
-        <span class="tag-first">1st object</span> → <span class="tag-second">2nd object</span>.
-        The module is supervised at every decoder layer with a focal loss and trained end-to-end
-        with the detector.
-      </p>
-    </div>
-    <figure class="image">
-      <img src="static/images/method.png" alt="HOI-DETR method diagram">
-    </figure>
-  </div>
-</section>
 
 
-<!-- ══════════════════════════════════════════════════ REFINED HANDS23 -->
-<section class="section" id="hands23">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Refined Hands23</h2>
-    <div class="content has-text-justified">
-      <p>
-        The original Hands23 annotation pipeline produced duplicate object annotations arising from a
-        hand-centric scheme in which each hand was independently annotated. We built a refinement
-        pipeline that reviewed 26.2k images — correcting 56.2% of them by removing duplicate boxes
-        and remapping all interaction links for consistency. The figure below shows representative
-        before/after corrections.
-      </p>
-    </div>
-    <figure class="image">
-      <img src="static/images/hands23_correction.png" alt="Hands23 before and after correction">
-    </figure>
-  </div>
-</section>
+
+
 
 
 <!-- ══════════════════════════════════════════════════ DOWNLOAD -->
