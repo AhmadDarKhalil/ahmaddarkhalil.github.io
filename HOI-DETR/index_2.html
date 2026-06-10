@@ -46,13 +46,17 @@
     .results-table th { background-color: #f5f5f5; text-align: center; }
     .results-table td, .results-table th { text-align: center; vertical-align: middle; }
     .results-table tr.ours td { font-weight: bold; background-color: #fffbe6; }
-    .delta { color: #c0392b; font-weight: 400; font-size: 0.82em; }
+    .results-table tr.ours2 td { font-weight: bold; }
     .section-nav { font-size: 1rem; }
     .section-nav a { margin: 0 4px; }
     /* All white backgrounds */
     section, .hero, .hero.is-light, .hero.is-small { background-color: #fff !important; }
     /* Center all titles */
     h2.title, h3.title, h4.title { text-align: center; }
+    /* Zero-shot pill used above qualitative blocks */
+    .zs-pill { display:inline-block; background:#eef4ff; color:#2b59c3; border:1px solid #cfe0ff;
+               border-radius:999px; padding:2px 12px; font-size:0.8rem; font-weight:600; letter-spacing:0.02em; }
+
     /* Thumbnail cards for in-the-wild overlays */
     .overlay-card { border: 1px solid #ececec; border-radius: 8px; overflow: hidden; transition: box-shadow .2s, transform .2s; height: 100%; display:flex; flex-direction:column; }
     .overlay-card:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-2px); }
@@ -188,6 +192,10 @@
         </div>
 
         <div class="content has-text-justified is-size-5 publication-authors section-nav" style="margin-bottom:0;">
+          <strong>Method:</strong>
+          <a href="#method">Overview</a> |
+          <a href="#hands23">Refined Hands23</a>
+          &nbsp;•&nbsp;
           <strong>Zero-Shot Results:</strong>
           <a href="#video">Video</a> |
           <a href="#aria">Aria Gen 2</a> |
@@ -197,17 +205,56 @@
           <strong>Quantitative:</strong>
           <a href="#quantitative">Tables</a>
           &nbsp;•&nbsp;
-          <strong>Method:</strong>
-          <a href="#method">Overview</a> |
-          <a href="#hands23">Refined Hands23</a>
-          &nbsp;•&nbsp;
           <strong>Resources:</strong>
-          <a href="#download">Download</a> 
-          
+          <a href="#download">Download</a>
         </div>
 
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ METHOD -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Method</h2>
+    <div class="content has-text-justified">
+      <p>
+        HOI-DETR builds on the Co-DETR architecture, training a transformer backbone end-to-end
+        to predict hands, objects, and their interactions. An <strong>interaction MLP head</strong>
+        operates on pairs of decoder token embeddings to predict binary interaction relationships
+        for valid pairs:
+        <span class="tag-hand">hand</span> → <span class="tag-first">1st object</span>
+        and
+        <span class="tag-first">1st object</span> → <span class="tag-second">2nd object</span>.
+        The module is supervised at every decoder layer with a focal loss and trained end-to-end
+        with the detector.
+      </p>
+    </div>
+    <figure class="image">
+      <img src="static/images/method.png" alt="HOI-DETR method diagram">
+    </figure>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════ REFINED HANDS23 -->
+<section class="section" id="hands23">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Refined Hands23</h2>
+    <div class="content has-text-justified">
+      <p>
+        The original Hands23 annotation pipeline produced duplicate object annotations arising from a
+        hand-centric scheme in which each hand was independently annotated. We built a refinement
+        pipeline that reviewed 26.2k images — correcting 56.2% of them by removing duplicate boxes
+        and remapping all interaction links for consistency. The figure below shows representative
+        before/after corrections.
+      </p>
+    </div>
+    <figure class="image">
+      <img src="static/images/hands23_correction.png" alt="Hands23 before and after correction">
+    </figure>
   </div>
 </section>
 
@@ -228,7 +275,7 @@
 <section class="hero is-small" id="video">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-4">Zero-Shot Video Comparisons</h2>
+      <h2 class="title is-4">Zero-Shot Video Comparison on HD-EPIC and HOIST dataset</h2>
       <p class="subtitle has-text-centered" style="margin-bottom:1.25rem;">
         Comparisons against prior methods on <a href="https://hd-epic.github.io/" target="_blank">HD-EPIC</a> and <a href="https://supreethn.github.io/research/hoistformer/index.html" target="_blank">HOIST</a>.
         Each clip places baseline predictions alongside HOI-DETR — note the fewer false positives,
@@ -290,11 +337,9 @@
       We compare against the hand-object method released with the
       <a href="https://www.projectaria.com/datasets/gen2pilot/" target="_blank">Aria Gen 2 Pilot Dataset</a>,
       which is <strong>trained on the dataset's own training split</strong>. Applied <strong>zero-shot</strong>,
-      with no Aria training data, HOI-DETR still produces markedly more accurate and temporally consistent
-      hand-object detections than their in-domain method. Each clip shows their method (left) and HOI-DETR (right).
+      with no Aria training data, HOI-DETR still produces markedly more accurate and temporally consistent.
     </p>
-    <!-- class `carousel-aria` => initialised separately with autoplay OFF (manual navigation only) -->
-    <div id="aria-carousel" class="carousel-aria results-carousel">
+    <div id="aria-carousel" class="carousel results-carousel">
       <div class="item">
         <video poster="" autoplay controls muted loop height="100%">
           <source src="static/videos/aria/AriaGen2PilotDataset_v1.0_clean_0_main_recording_results_combined_small.mp4" type="video/mp4">
@@ -312,7 +357,7 @@
 <!-- Zero-shot on FineBio (still image) -->
 <section class="section" id="finebio">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Zero-Shot on FineBio</h2>
+    <h2 class="title is-3">Zero-Shot on FineBio Dataset</h2>
     <p class="subtitle has-text-centered" style="margin-bottom:1rem;">
       Comparison between Hands23 and HOI-DETR on the
       <a href="https://github.com/aistairc/FineBio" target="_blank">FineBio</a> dataset —
@@ -406,28 +451,24 @@
     <!-- In-domain -->
     <h3 class="title is-4">Hands23 Val — In-Domain (Refined Annotations)</h3>
     <p class="subtitle is-6 has-text-centered" style="margin-bottom:1rem; color:#666;">
-      Detection AP₅₀ and interaction F1. HOI-DETR improves the <span class="tag-first">1st</span> and <span class="tag-second">2nd</span> object detection by over 25 points.
+      Detection AP₅₀ and interaction F1. HOI-DETR improves the 1st/2nd object detection by over 25 points.
     </p>
     <div class="table-container" style="margin-bottom:2.5rem;">
       <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
         <thead>
           <tr>
             <th>Method</th>
-            <th>Overall</th>
-            <th><span class="tag-hand">hand</span></th>
-            <th><span class="tag-first">1st object</span></th>
-            <th><span class="tag-second">2nd object</span> </th>
+            <th>Overall AP₅₀</th>
+            <th>Hand AP₅₀</th>
+            <th>1st obj AP₅₀</th>
+            <th>2nd obj AP₅₀</th>
             <th>F1 inter</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
-            <td>63.6 <span class="delta">(−22.5)</span></td>
-            <td>85.2 <span class="delta">(−7.9)</span></td>
-            <td>59.4 <span class="delta">(−27.1)</span></td>
-            <td>46.2 <span class="delta">(−32.5)</span></td>
-            <td>90.7 <span class="delta">(−4.8)</span></td>
+            <td>63.6</td><td>85.2</td><td>59.4</td><td>46.2</td><td>90.7</td>
           </tr>
           <tr class="ours">
             <td>HOI-DETR (ours)</td>
@@ -440,14 +481,14 @@
     <!-- Zero-shot intro -->
     <h3 class="title is-4">Zero-Shot Cross-Dataset</h3>
     <p class="subtitle is-6 has-text-centered" style="margin-bottom:1.5rem; color:#666;">
-      HOI-DETR is trained only on Hands23. The tables below evaluate it, without any fine-tuning,
+      HOI-DETR is trained only on Hands23. The tables below evaluate the <span class="tag-first">1st objects</span>, without any fine-tuning,
       on three datasets it has never seen — including the video benchmark
-      <a href="https://hd-epic.github.io/" target="_blank">HD-EPIC</a>-HOI.
-      <span class="delta">(−X)</span> shows each baseline's gap to HOI-DETR.
+      <a href="https://hd-epic.github.io/" target="_blank">HD-EPIC-HOI</a>.
     </p>
 
     <!-- HD-EPIC-HOI video -->
-    <h4 class="title is-5" style="margin-bottom:0.5rem;">HD-EPIC-HOI (Video,<span class="tag-first">1st object</span>)</h4>
+    <h4 class="title is-5" style="margin-bottom:0.5rem;">HD-EPIC-HOI (Video, 1st obj)</h4>
+
     <div class="table-container" style="margin-bottom:2.5rem;">
       <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
         <thead>
@@ -461,15 +502,11 @@
         <tbody>
           <tr>
             <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
-            <td>46.9 <span class="delta">(−25.7)</span></td>
-            <td>26.8 <span class="delta">(−33.4)</span></td>
-            <td>31.4 <span class="delta">(−29.6)</span></td>
+            <td>46.9</td><td>26.8</td><td>31.4</td>
           </tr>
           <tr>
             <td><a href="https://supreethn.github.io/research/hoistformer/index.html" target="_blank">HOIST</a></td>
-            <td>30.4 <span class="delta">(−42.2)</span></td>
-            <td>16.1 <span class="delta">(−44.1)</span></td>
-            <td>27.2 <span class="delta">(−33.8)</span></td>
+            <td>30.4</td><td>16.1</td><td>27.2</td>
           </tr>
           <tr class="ours">
             <td>HOI-DETR (ours)</td>
@@ -489,16 +526,14 @@
               <tr>
                 <th>Method</th>
                 <th>Overall</th>
-                <th><span class="tag-hand">hand</span></th>
-                <th><span class="tag-first">1st object</span></th>
+                <th>Hand</th>
+                <th>1st obj</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
-                <td>50.2 <span class="delta">(−21.0)</span></td>
-                <td>74.4 <span class="delta">(−12.2)</span></td>
-                <td>26.0 <span class="delta">(−29.8)</span></td>
+                <td>50.2</td><td>74.4</td><td>26.0</td>
               </tr>
               <tr class="ours">
                 <td>HOI-DETR (ours)</td>
@@ -510,23 +545,23 @@
       </div>
 
       <div class="column is-5">
-        <h4 class="title is-5" style="margin-bottom:0.5rem;">HOIST (AP₅₀)</h4>
+        <h4 class="title is-5" style="margin-bottom:0.5rem;">HOIST (1st obj AP₅₀)</h4>
         <div class="table-container">
           <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
             <thead>
               <tr>
                 <th>Method</th>
-                <th><span class="tag-first">1st object</span></th>
+                <th>1st obj AP₅₀</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
-                <td>43.1 <span class="delta">(−33.5)</span></td>
+                <td>43.1</td>
               </tr>
               <tr>
                 <td><a href="https://supreethn.github.io/research/hoistformer/index.html" target="_blank">HOIST</a></td>
-                <td>70.7 <span class="delta">(−5.9)</span></td>
+                <td>70.7</td>
               </tr>
               <tr class="ours">
                 <td>HOI-DETR (ours)</td>
@@ -585,58 +620,14 @@
             <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td><td>✓</td>
             <td>85.2</td><td style="background:#d0e2ff;">71.7</td><td style="background:#d0e2ff;">67.0</td><td style="background:#d0e2ff;">60.6</td><td style="background:#d0e2ff;">74.4</td><td style="background:#d0e2ff;">93.0</td>
           </tr>
-          <tr class="ours">
+          <tr class="ours2">
             <td>HOI-DETR (ours)</td><td>✓</td>
-            <td>93.1</td><td style="background:#fff3b0;">78.1</td><td style="background:#fff3b0;">75.0</td><td style="background:#fff3b0;">74.0</td><td style="background:#fff3b0;">86.6</td><td style="background:#fff3b0;">98.5</td>
+            <td>93.1</td><td style="background:#d0e2ff;">78.1</td><td style="background:#d0e2ff;">75.0</td><td style="background:#d0e2ff;">74.0</td><td style="background:#d0e2ff;">86.6</td><td style="background:#d0e2ff;">98.5</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════ METHOD -->
-<section class="section" id="method">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Method</h2>
-    <div class="content has-text-justified">
-      <p>
-        HOI-DETR builds on the Co-DETR architecture, training a transformer backbone end-to-end
-        to predict hands, objects, and their interactions. An <strong>interaction MLP head</strong>
-        operates on pairs of decoder token embeddings to predict binary interaction relationships
-        for valid pairs:
-        <span class="tag-hand">hand</span> → <span class="tag-first">1st object</span>
-        and
-        <span class="tag-first">1st object</span> → <span class="tag-second">2nd object</span>.
-        The module is supervised at every decoder layer with a focal loss and trained end-to-end
-        with the detector.
-      </p>
-    </div>
-    <figure class="image">
-      <img src="static/images/method.png" alt="HOI-DETR method diagram">
-    </figure>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════ REFINED HANDS23 -->
-<section class="section" id="hands23">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Refined Hands23</h2>
-    <div class="content has-text-justified">
-      <p>
-        The original Hands23 annotation pipeline produced duplicate object annotations arising from a
-        hand-centric scheme in which each hand was independently annotated. We built a refinement
-        pipeline that reviewed 26.2k images — correcting 56.2% of them by removing duplicate boxes
-        and remapping all interaction links for consistency. The figure below shows representative
-        before/after corrections.
-      </p>
-    </div>
-    <figure class="image">
-      <img src="static/images/hands23_correction.png" alt="Hands23 before and after correction">
-    </figure>
   </div>
 </section>
 
@@ -680,26 +671,19 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3">Acknowledgements</h2>
     <p>
-      This work was supported by EPSRC Program Grant Visual AI (EP/T028572/1).
-      A. Darkhalil was supported by the EPSRC Doctoral Training Program (DTP).
-      We acknowledge the usage of GPU node hours granted as part of the AIRR Innovator project
-      "5D Hand-Object Interaction Modelling from In-the-wild Videos" (Mar 2026 – Sep 2026), the
-      AIRR Gateway project "HOI Foundational Model from Egocentric Data" (Dec 2025 – Mar 2026),
-      and the Sovereign AI Unit call project "Gen Model in Ego-sensed World" (Aug – Nov 2025).
-      D. Fouhey was supported by the National Science Foundation under Grant No. 2006619 and 2437330.
-    </p>
-    <p style="margin-top:0.75rem;">
-      We thank <strong>Sidhartha Reddy Potu</strong> for his contributions during the early stages
-      of this project. This work builds on
-      <a href="https://github.com/Sense-X/Co-DETR" target="_blank">Co-DETR</a> and
-      <a href="https://github.com/open-mmlab/mmdetection" target="_blank">MMDetection</a>, and we
-      gratefully acknowledge their authors for open-sourcing the codebase and architecture. We also
-      thank the authors of
+      This work builds on <a href="https://github.com/Sense-X/Co-DETR" target="_blank">Co-DETR</a>
+      and <a href="https://github.com/open-mmlab/mmdetection" target="_blank">MMDetection</a>.
+      We thank the authors of
       <a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a>,
       <a href="https://supreethn.github.io/research/hoistformer/index.html" target="_blank">HOIST</a>,
       <a href="https://github.com/aistairc/FineBio" target="_blank">FineBio</a>, and
       <a href="https://hd-epic.github.io/" target="_blank">HD-EPIC</a>
-      for making their datasets publicly available.
+      for making their datasets publicly available. We thank
+      <strong>Sidhartha Reddy Potu</strong> for his contributions in the early stages of this project.
+      <!-- Add funding here, e.g.:
+      This work is supported by EPSRC Programme Grant VisualAI EP/T028572/1.
+      We acknowledge the use of the Isambard-AI National Research Facility.
+      -->
     </p>
   </div>
 </section>
