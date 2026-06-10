@@ -46,12 +46,31 @@
     .results-table th { background-color: #f5f5f5; text-align: center; }
     .results-table td, .results-table th { text-align: center; vertical-align: middle; }
     .results-table tr.ours td { font-weight: bold; background-color: #fffbe6; }
+    .results-table tr.ours2 td { font-weight: bold; }
     .section-nav { font-size: 1rem; }
     .section-nav a { margin: 0 4px; }
     /* All white backgrounds */
     section, .hero, .hero.is-light, .hero.is-small { background-color: #fff !important; }
     /* Center all titles */
     h2.title, h3.title, h4.title { text-align: center; }
+    /* Zero-shot pill used above qualitative blocks */
+    .zs-pill { display:inline-block; background:#eef4ff; color:#2b59c3; border:1px solid #cfe0ff;
+               border-radius:999px; padding:2px 12px; font-size:0.8rem; font-weight:600; letter-spacing:0.02em; }
+
+    /* Thumbnail cards for in-the-wild overlays */
+    .overlay-card { border: 1px solid #ececec; border-radius: 8px; overflow: hidden; transition: box-shadow .2s, transform .2s; height: 100%; display:flex; flex-direction:column; }
+    .overlay-card:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-2px); }
+    .overlay-thumb { position: relative; display:block; aspect-ratio: 16 / 9; background:#000; overflow:hidden; }
+    .overlay-thumb img { width:100%; height:100%; object-fit: cover; display:block; }
+    .overlay-thumb .play-badge {
+      position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
+      width:54px; height:54px; border-radius:50%;
+      background: rgba(0,0,0,0.55); color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.4rem; transition: background .2s;
+    }
+    .overlay-card:hover .play-badge { background: var(--hand-red); }
+    .overlay-card .card-content { flex-grow:1; }
   </style>
 </head>
 <body>
@@ -101,6 +120,13 @@
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/ahmaddarkhalil/hoi-detr-demo" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>🤗 Demo</span>
                 </a>
               </span>
 
@@ -170,13 +196,17 @@
           <a href="#method">Overview</a> |
           <a href="#hands23">Refined Hands23</a>
           &nbsp;•&nbsp;
-          <strong>Results:</strong>
-          <a href="#qualitative">Qualitative</a> |
-          <a href="#quantitative">Quantitative</a>
+          <strong>Zero-Shot Results:</strong>
+          <a href="#video">Video</a> |
+          <a href="#aria">Aria Gen 2</a> |
+          <a href="#finebio">FineBio</a> |
+          <a href="#wild">In-the-Wild</a>
+          &nbsp;•&nbsp;
+          <strong>Quantitative:</strong>
+          <a href="#quantitative">Tables</a>
           &nbsp;•&nbsp;
           <strong>Resources:</strong>
-          <a href="#download">Download</a> |
-          <a href="#acknowledgements">Acknowledgements</a>
+          <a href="#download">Download</a>
         </div>
 
       </div>
@@ -229,23 +259,30 @@
 </section>
 
 
-<!-- ══════════════════════════════════════════════════ QUALITATIVE -->
-<section class="section" id="qualitative">
+<!-- ══════════════════════════════════════════════════ QUALITATIVE (ZERO-SHOT) -->
+<section class="section" id="qualitative" style="padding-bottom:0.5rem;">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Qualitative Results</h2>
+    <h2 class="title is-3">Zero-Shot Qualitative Results</h2>
     <p class="subtitle has-text-centered">
-      HOI-DETR detects hands, 1st objects, and 2nd objects and predicts their interaction links
-      across diverse scenes and domains — including out-of-distribution footage never seen during training.
-      Each video shows (left) Hands23 baseline and (right) HOI-DETR.
+      HOI-DETR is trained only on the refined Hands23 dataset. <strong>All results below are zero-shot</strong>
+      — evaluated on unseen datasets and domains, from egocentric video to in-the-wild web footage,
+      with no additional training or fine-tuning.
     </p>
   </div>
 </section>
 
-<section class="hero is-small">
+<!-- Zero-shot video comparisons (egocentric + web) -->
+<section class="hero is-small" id="video">
   <div class="hero-body">
     <div class="container">
+      <h2 class="title is-4">Zero-Shot Video Comparison on HD-EPIC and HOIST dataset</h2>
+      <p class="subtitle has-text-centered" style="margin-bottom:1.25rem;">
+        Comparisons against prior methods on <a href="https://hd-epic.github.io/" target="_blank">HD-EPIC</a> and <a href="https://supreethn.github.io/research/hoistformer/index.html" target="_blank">HOIST</a>.
+        Each clip places baseline predictions alongside HOI-DETR — note the fewer false positives,
+        more accurate <span class="tag-first">1st object</span>
+        detections, and more stable interaction links over time.
+      </p>
       <div id="results-carousel" class="carousel results-carousel">
-
 
         <div class="item">
           <video poster="" autoplay controls muted loop height="100%">
@@ -292,69 +329,112 @@
   </div>
 </section>
 
-<section class="section">
+<!-- Zero-shot on Aria Gen 2 -->
+<section class="section" id="aria">
   <div class="container is-max-desktop">
-    <h2 class="title is-4">Cross-Dataset Comparison</h2>
+    <h2 class="title is-3">Zero-Shot on Aria Gen 2 Pilot Dataset</h2>
+    <p class="subtitle has-text-centered" style="margin-bottom:1.5rem;">
+      We compare against the hand-object method released with the
+      <a href="https://www.projectaria.com/datasets/gen2pilot/" target="_blank">Aria Gen 2 Pilot Dataset</a>,
+      which is <strong>trained on the dataset's own training split</strong>. Applied <strong>zero-shot</strong>,
+      with no Aria training data, HOI-DETR still produces markedly more accurate and temporally consistent.
+    </p>
+    <div id="aria-carousel" class="carousel results-carousel">
+      <div class="item">
+        <video poster="" autoplay controls muted loop height="100%">
+          <source src="static/videos/aria/AriaGen2PilotDataset_v1.0_clean_0_main_recording_results_combined_small.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="item">
+        <video poster="" autoplay controls muted loop height="100%">
+          <source src="static/videos/aria/AriaGen2PilotDataset_v1.0_play_2_main_recording_results_combined_small.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zero-shot on FineBio (still image) -->
+<section class="section" id="finebio">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Zero-Shot on FineBio Dataset</h2>
     <p class="subtitle has-text-centered" style="margin-bottom:1rem;">
-      Qualitative comparison between Hands23 and HOI-DETR on the FineBio dataset
-      (out-of-distribution biology lab footage). ✗ marks invalid interaction links or false positives.
+      Comparison between Hands23 and HOI-DETR on the
+      <a href="https://github.com/aistairc/FineBio" target="_blank">FineBio</a> dataset —
+      out-of-distribution biology lab footage, far from the cooking-centric training data.
+      ✗ marks invalid interaction links or false positives.
     </p>
     <figure class="image">
-      <img src="static/images/qualitive_finebio1_compressed.png" alt="Qualitative comparison on FineBio">
+      <img src="static/images/qualitive_finebio1_compressed.png" alt="Zero-shot qualitative comparison on FineBio">
     </figure>
   </div>
 </section>
 
-
-<!-- ══════════════════════════════════════════════════ CHALLENGING VIDEOS -->
-<section class="hero is-small">
+<!-- Challenging In-the-Wild Videos (interactive overlays) -->
+<section class="hero is-small" id="wild">
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-4">Challenging In-the-Wild Videos</h2>
-      <p class="subtitle" style="margin-bottom:1.5rem;">
-        Predictions overlaid on full-HD YouTube footage the model was never trained on.
-        Each link opens an interactive page: the original video plays from YouTube
-        with bounding boxes and interaction links drawn on top in real time.
+      <p class="subtitle" style="margin-bottom:1.5rem; text-align:center;">
+        Zero-shot predictions overlaid on full-HD YouTube footage. Each card opens an interactive page:
+        the original video plays from YouTube with bounding boxes and interaction links drawn on top in real time.
       </p>
       <div class="columns is-multiline">
 
         <div class="column is-one-third">
-          <div class="card">
+          <a href="static/overlays/YTDown_YouTube_French-Magician-Does-CRAZY-Quick-Sleight_Media_WSGfKuDsIfA_003_480p_overlay.html"
+             target="_blank" class="overlay-card">
+            <span class="overlay-thumb">
+              <img src="static/overlays/YTDown_YouTube_French-Magician-Does-CRAZY-Quick-Sleight_Media_WSGfKuDsIfA_003_480p_overlay.png" alt="French Magician thumbnail">
+              <span class="play-badge">▶</span>
+            </span>
             <div class="card-content">
               <p class="title is-6">French Magician — Sleight of Hand</p>
               <p class="subtitle is-7" style="color:#888;">Fast, deformable hand motion; partial occlusion</p>
             </div>
-            <footer class="card-footer">
-              <a href="static/overlays/YTDown_YouTube_French-Magician-Does-CRAZY-Quick-Sleight_Media_WSGfKuDsIfA_003_480p_overlay.html"
-                 class="card-footer-item" target="_blank">▶ View overlay</a>
-            </footer>
-          </div>
+          </a>
         </div>
 
         <div class="column is-one-third">
-          <div class="card">
+          <a href="static/overlays/YTDown_YouTube_FULL-DAY-CHINESE-FOOD-TOUR-IN-FLUSHING-N_Media_mgC5iH7o0yM_003_480p_overlay.html"
+             target="_blank" class="overlay-card">
+            <span class="overlay-thumb">
+              <img src="static/overlays/YTDown_YouTube_FULL-DAY-CHINESE-FOOD-TOUR-IN-FLUSHING-N_Media_mgC5iH7o0yM_003_480p_overlay.png" alt="Chinese Food Tour thumbnail">
+              <span class="play-badge">▶</span>
+            </span>
             <div class="card-content">
               <p class="title is-6">Full Day Chinese Food Tour — Flushing NY</p>
               <p class="subtitle is-7" style="color:#888;">Dense hand-object interactions; crowded street food scene</p>
             </div>
-            <footer class="card-footer">
-              <a href="static/overlays/YTDown_YouTube_FULL-DAY-CHINESE-FOOD-TOUR-IN-FLUSHING-N_Media_mgC5iH7o0yM_003_480p_overlay.html"
-                 class="card-footer-item" target="_blank">▶ View overlay</a>
-            </footer>
-          </div>
+          </a>
         </div>
 
         <div class="column is-one-third">
-          <div class="card">
+          <a href="static/overlays/YTDown_YouTube_Eden-Choi-s-IMPOSSIBLE-magic-will-have-y_Media_uua-9WFghbc_003_480p_overlay.html"
+             target="_blank" class="overlay-card">
+            <span class="overlay-thumb">
+              <img src="static/overlays/YTDown_YouTube_Eden-Choi-s-IMPOSSIBLE-magic-will-have-y_Media_uua-9WFghbc_003_480p_overlay.png" alt="Eden Choi thumbnail">
+              <span class="play-badge">▶</span>
+            </span>
             <div class="card-content">
               <p class="title is-6">Eden Choi — Impossible Magic</p>
               <p class="subtitle is-7" style="color:#888;">Extreme speed; fingers and small objects at close range</p>
             </div>
-            <footer class="card-footer">
-              <a href="static/overlays/YTDown_YouTube_Eden-Choi-s-IMPOSSIBLE-magic-will-have-y_Media_uua-9WFghbc_003_480p_overlay.html"
-                 class="card-footer-item" target="_blank">▶ View overlay</a>
-            </footer>
-          </div>
+          </a>
+        </div>
+
+        <div class="column is-one-third">
+          <a href="static/overlays/YTDown_YouTube_Giving-Strangers-Belated-Christmas-Prese_Media_wDXnnL02-_E_002_720p_overlay.html"
+             target="_blank" class="overlay-card">
+            <span class="overlay-thumb">
+              <img src="static/overlays/YTDown_YouTube_Giving-Strangers-Belated-Christmas-Prese_Media_wDXnnL02-_E_002_720p_overlay.png" alt="Giving Strangers Christmas Presents thumbnail">
+              <span class="play-badge">▶</span>
+            </span>
+            <div class="card-content">
+              <p class="title is-6">Giving Strangers Belated Christmas Presents</p>
+              <p class="subtitle is-7" style="color:#888;">Multi-person hand-to-hand exchanges; gift-wrapped objects</p>
+            </div>
+          </a>
         </div>
 
       </div>
@@ -362,17 +442,23 @@
   </div>
 </section>
 
+
 <!-- ══════════════════════════════════════════════════ QUANTITATIVE -->
 <section class="section" id="quantitative">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Quantitative Results</h2>
 
-    <h3 class="title is-4">Hands23 Val (Refined Annotations)</h3>
+    <!-- In-domain -->
+    <h3 class="title is-4">Hands23 Val — In-Domain (Refined Annotations)</h3>
+    <p class="subtitle is-6 has-text-centered" style="margin-bottom:1rem; color:#666;">
+      Detection AP₅₀ and interaction F1. HOI-DETR improves the 1st/2nd object detection by over 25 points.
+    </p>
     <div class="table-container" style="margin-bottom:2.5rem;">
       <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
         <thead>
           <tr>
             <th>Method</th>
+            <th>Overall AP₅₀</th>
             <th>Hand AP₅₀</th>
             <th>1st obj AP₅₀</th>
             <th>2nd obj AP₅₀</th>
@@ -382,39 +468,161 @@
         <tbody>
           <tr>
             <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
-            <td>85.2</td><td>59.4</td><td>46.2</td><td>90.7</td>
+            <td>63.6</td><td>85.2</td><td>59.4</td><td>46.2</td><td>90.7</td>
           </tr>
           <tr class="ours">
             <td>HOI-DETR (ours)</td>
-            <td>93.1</td><td>86.5</td><td>78.7</td><td>95.5</td>
+            <td>86.1</td><td>93.1</td><td>86.5</td><td>78.7</td><td>95.5</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h3 class="title is-4">Zero-Shot Cross-Dataset (1st obj AP₅₀)</h3>
-    <div class="table-container">
+    <!-- Zero-shot intro -->
+    <h3 class="title is-4">Zero-Shot Cross-Dataset</h3>
+    <p class="subtitle is-6 has-text-centered" style="margin-bottom:1.5rem; color:#666;">
+      HOI-DETR is trained only on Hands23. The tables below evaluate the <span class="tag-first">1st objects</span>, without any fine-tuning,
+      on three datasets it has never seen — including the video benchmark
+      <a href="https://hd-epic.github.io/" target="_blank">HD-EPIC-HOI</a>.
+    </p>
+
+    <!-- HD-EPIC-HOI video -->
+    <h4 class="title is-5" style="margin-bottom:0.5rem;">HD-EPIC-HOI (Video, 1st obj)</h4>
+
+    <div class="table-container" style="margin-bottom:2.5rem;">
       <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
         <thead>
           <tr>
             <th>Method</th>
-            <th><a href="https://github.com/SupreethN/HOISTFormer" target="_blank">HOIST</a></th>
-            <th>HD-EPIC-HOI</th>
-            <th><a href="https://github.com/aistairc/FineBio" target="_blank">FineBio</a></th>
+            <th>Frame-AP</th>
+            <th>Video-AP</th>
+            <th>LTC</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
-            <td>43.1</td><td>42.4</td><td>26.0</td>
+            <td>46.9</td><td>26.8</td><td>31.4</td>
           </tr>
           <tr>
-            <td><a href="https://github.com/SupreethN/HOISTFormer" target="_blank">HOIST</a></td>
-            <td>70.7</td><td>28.4</td><td>—</td>
+            <td><a href="https://supreethn.github.io/research/hoistformer/index.html" target="_blank">HOIST</a></td>
+            <td>30.4</td><td>16.1</td><td>27.2</td>
           </tr>
           <tr class="ours">
             <td>HOI-DETR (ours)</td>
-            <td>76.6</td><td>67.6</td><td>55.8</td>
+            <td>72.6</td><td>60.2</td><td>61.0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FineBio + HOIST side by side -->
+    <div class="columns" style="margin-bottom:1.5rem;">
+      <div class="column is-7">
+        <h4 class="title is-5" style="margin-bottom:0.5rem;">FineBio (AP₅₀)</h4>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Overall</th>
+                <th>Hand</th>
+                <th>1st obj</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
+                <td>50.2</td><td>74.4</td><td>26.0</td>
+              </tr>
+              <tr class="ours">
+                <td>HOI-DETR (ours)</td>
+                <td>71.2</td><td>86.6</td><td>55.8</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="column is-5">
+        <h4 class="title is-5" style="margin-bottom:0.5rem;">HOIST (1st obj AP₅₀)</h4>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>1st obj AP₅₀</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td>
+                <td>43.1</td>
+              </tr>
+              <tr>
+                <td><a href="https://supreethn.github.io/research/hoistformer/index.html" target="_blank">HOIST</a></td>
+                <td>70.7</td>
+              </tr>
+              <tr class="ours">
+                <td>HOI-DETR (ours)</td>
+                <td>76.6</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hand detection generalization -->
+    <h3 class="title is-4" style="margin-top:1.5rem;">Hand Detection Generalisation (AP₅₀)</h3>
+    <p class="subtitle is-6 has-text-centered" style="margin-bottom:1rem; color:#666;">
+      Despite being optimised for the broader HOI task, HOI-DETR is also a strong pure hand detector,
+      leading on 4 of 6 benchmarks and achieving the best average zero-shot AP (82.4 vs. WiLOR's 78.5).
+      <span style="background:#d0e2ff; padding:0 4px; border-radius:3px;">Blue</span> cells are zero-shot.
+      *as reported in WiLOR.
+    </p>
+    <div class="table-container">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table" style="font-size:0.9rem;">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Hand+Obj</th>
+            <th>Hands23</th>
+            <th>WHIM</th>
+            <th>COCO-Whole</th>
+            <th>Oxford-Hands</th>
+            <th>FineBio</th>
+            <th>EgoHands</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MediaPipe</td><td>✗</td><td>—</td>
+            <td style="background:#d0e2ff;">53.1*</td><td style="background:#d0e2ff;">15.4*</td><td style="background:#d0e2ff;">8.7*</td><td>—</td><td>—</td>
+          </tr>
+          <tr>
+            <td>OpenPose</td><td>✗</td><td>—</td>
+            <td style="background:#d0e2ff;">76.8*</td><td style="background:#d0e2ff;">37.1*</td><td style="background:#d0e2ff;">20.7*</td><td>—</td><td>—</td>
+          </tr>
+          <tr>
+            <td>ContactHands</td><td>✗</td><td>—</td>
+            <td style="background:#d0e2ff;">93.4*</td><td style="background:#d0e2ff;">50.3*</td><td style="background:#d0e2ff;">70.0*</td><td>—</td><td>—</td>
+          </tr>
+          <tr>
+            <td>ViTDet</td><td>✗</td><td>—</td>
+            <td style="background:#d0e2ff;">84.7*</td><td style="background:#d0e2ff;">41.6*</td><td style="background:#d0e2ff;">67.6*</td><td>—</td><td>—</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/rolpotamias/WiLoR" target="_blank">WiLOR</a></td><td>✗</td>
+            <td style="background:#d0e2ff;">77.3</td><td>96.1*</td><td style="background:#d0e2ff;">62.5*</td><td style="background:#d0e2ff;">82.6*</td><td style="background:#d0e2ff;">76.5</td><td style="background:#d0e2ff;">93.4</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a></td><td>✓</td>
+            <td>85.2</td><td style="background:#d0e2ff;">71.7</td><td style="background:#d0e2ff;">67.0</td><td style="background:#d0e2ff;">60.6</td><td style="background:#d0e2ff;">74.4</td><td style="background:#d0e2ff;">93.0</td>
+          </tr>
+          <tr class="ours2">
+            <td>HOI-DETR (ours)</td><td>✓</td>
+            <td>93.1</td><td style="background:#d0e2ff;">78.1</td><td style="background:#d0e2ff;">75.0</td><td style="background:#d0e2ff;">74.0</td><td style="background:#d0e2ff;">86.6</td><td style="background:#d0e2ff;">98.5</td>
           </tr>
         </tbody>
       </table>
@@ -434,6 +642,11 @@
          target="_blank" style="display:block; margin-bottom:0.75rem;">
         <span class="icon"><i class="fas fa-download"></i></span>
         &nbsp;HOI-DETR checkpoint (ViT-L/16, trained on Hands23)
+      </a>
+
+      <a href="https://huggingface.co/spaces/ahmaddarkhalil/hoi-detr-demo" target="_blank"
+         style="display:block; margin-bottom:0.75rem;">
+        🤗&nbsp;Interactive demo (run HOI-DETR on your own images)
       </a>
 
       <a href="https://github.com/ddshan/hands23_data" target="_blank"
@@ -460,9 +673,13 @@
     <p>
       This work builds on <a href="https://github.com/Sense-X/Co-DETR" target="_blank">Co-DETR</a>
       and <a href="https://github.com/open-mmlab/mmdetection" target="_blank">MMDetection</a>.
-      We thank the authors of Hands23, HOIST, FineBio, and HD-EPIC for making their datasets
-      publicly available. We thank <strong>Sidhartha Reddy Potu</strong> for his contributions
-      in the early stages of this project.
+      We thank the authors of
+      <a href="https://github.com/ddshan/hands23_data" target="_blank">Hands23</a>,
+      <a href="https://supreethn.github.io/research/hoistformer/index.html" target="_blank">HOIST</a>,
+      <a href="https://github.com/aistairc/FineBio" target="_blank">FineBio</a>, and
+      <a href="https://hd-epic.github.io/" target="_blank">HD-EPIC</a>
+      for making their datasets publicly available. We thank
+      <strong>Sidhartha Reddy Potu</strong> for his contributions in the early stages of this project.
       <!-- Add funding here, e.g.:
       This work is supported by EPSRC Programme Grant VisualAI EP/T028572/1.
       We acknowledge the use of the Isambard-AI National Research Facility.
